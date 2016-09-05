@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<title>Document</title>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Title</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+			</ul>
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Link</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li><a href="#">Separated link</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div>
+</nav>
+<div class="container">
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Apuntes de android
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <h1>Licencia</h1>	
+		<p>Algunas partes del sistema android son desarrolladas en código abierto, así que el código fuente siempre está disponible, sin embargo otras partes son desarrolladas primero en un árbol privado y luego es liberado  cuando la siguiente versión de la plataforma está lista</p>
+		<p>La mayor parte del software android a adoptado la licencia apache 2.0, ésta licencia concede algunos derechos y obligaciones </p>
+		<ul>
+			<li>
+				<h2>Reproduccion:</h2> <p>se otorga al licenciatario el derecho de ejecutar y reproducir libremente el software por cualquier medio y cualquier forma</p>
+			</li>
+			<li>
+				<h2>Modificación:</h2> <p>El licenciatario tiene el derecho de modificar libremente el programa, incluido el derecho a traducirlo, así como la posibilidad de crear cualquier tipo de desarrollo e integración derivada del mismo</p>
+			</li>
+			<li>
+				<h2>Distribucion:</h2> <p>El licenciatario tiene el derecho de distribuir libremente el software a tra´ves de cualquier modalidad soporte o formato</p>
+			</li>
+			<li>
+				<h2>Comunicación pública: </h2><p>El licenciatario podra poner el software a disposición de una pluradidad de personas sin previa distribución de ejemplares físicos a cada una de ellas incluida la ejecución pública del programa de ordenador</p>
+			</li>
+			<li>
+				<h2>Sublicenciamiento (en código fuente o código objeto): </h2> <p>El licenciatario tiene el derecho de sublicenciar libremente el software en código fuente o código objeto</p>
+			</li>
+		</ul>
+		<h1>Obligaciones</h1>
+		<ul>
+			<li><p>Siempre incluir una copia de la licencia</p></li>
+			<li><p>Siempre indicar cualquier modificación</p></li>	
+			<li><p>Mantener avisos de titularidad</p></li>
+		</ul>
+		<h3>Investigar versiones de android desde la 1.0 hasta la 7.0 </h3><b>isc.android.uaa@gmail.com</b>
+		
+		<h1>Elementos de un programa android</h1>
+		<ol>
+			<li>
+				<h3>app/src/main/java</h3>
+				<p>Carpeta que contiene el codigo fuente de la aplicación clases auxiliares, etc. Los ficheros llava se almacenan en un espacio de nombres</p>
+			</li>
+			<li>
+				<h3>app/build/generated</h3>
+				<p>: Carpeta que contiene el código generado de forma automática por el sdk</p>
+			</li>
+			<li>
+				<h3>app/src/main/res:</h3>
+				<p>Directorio para los recursos de la aplicación como los archivos drawable, layout, valores de caden, etc.</p>
+			</li>
+			<li>
+				<h3>app/src/main/res/drawable:</h3>
+				<p> Directorio para los objetos drawables (como las imagenes) que son diseñadas para pantallas de cierta densidad</p>
+			</li>
+			<li>
+				<h3>app/src/main/res/drawable:</h3>Directorio par los archivos que definen  la interfaz de usuario de la aplicación
+			</li>
+			<li>
+				<h3>app/src/main/AndroidManifest:</h3>
+				<p>Este ficheero describe la aplicación android en el se indican las actividades intenciones, servicios y provedores de contenido de la aplicación. También se declaran los permisos que requerira la aplicación y se indica la versión mínima de android para poder ejecutarla.</p>
+			</li>
+			<li>
+				<h3>build.gradle:</h3>
+				<p>Contiene información necesaria para la compilación del proyecto, por ejemplo la versión del sdk de android utilizada para compilar, la minima versión de android que soportara la aplicación, referencias a las librerías externas, etcetera</p>
+			</li>
+		</ol>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Gangam
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        
+			<ol>
+				<li><li>
+					Administracion de la informacion y la arquitectura social</h1>
+					<h2>Importancia de los SI</h2>
+					<ol>
+						<li>Actualmente se ha convertido en una área funcional de la empresa tal como contabilidad y producción</li>
+						<li>Un SI si opera de manera eficiente permitira que los costos se minimicen</li>
+						<li>Un SI facilita la comunicación entre los diferentes procesos empresariales</li>
+						<li>Actualmente un SI permite a una empresa contar con una ventaja competitiva con respecto a su competencia</li>
+					</ol>
+				</li>
+					<h1><li>Administracion de la información</h1>
+					<p>El objetivo principal de un SI es administrar la información y presentarla de forma simple, de tal manera que se disminuya el tiempo de análisis y por consiguiente aumentar la capacidad de respuesta. Actualmente unaa compañía duplica o triplica su volúmen de información cada 6 meses, esto es debido a que ahora se guardan imágenes, audio, video, entre otros.
+					Un sistema presentara una ventaja si contiene un módulo que permita ordenar, estructurar y depurar los datos para presentarlos a travéz de gráficos de manera que un empresario pueda tomar decisiones estratégicas (Uso de dashboard) </p>
+		
+				</li>			
+			</ol>
+			<h1>Unidad II</h1>
+			<ul>
+				<li>
+					<h2></h2>
+					<p></p>
+				</li>
+				<li>
+					<h2></h2>
+					<p></p>
+				</li>
+				<li>
+					<h2></h2>
+					<p></p>
+				</li>
+				<li>
+					<h2></h2>
+					<p></p>
+				</li>
+				<li>
+					<h2></h2>
+					<p></p>
+				</li>
+			</ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Gangam2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        
+			<ol>
+					<h1>
+					<li>Nacimiento del proyecto (idea)</h1>
+						<p>	Toda investigación nace de una idea novedosa que Aliente al investigador a generar resultados utiles para la humanidad</p>
+					</li>
+					<p>Afinar y reestructurar la idea  desarrollando objetivos,preguntas,justificacion y evaluación de deficiencias</p>
+
+					<h1>
+					<li>
+						Revisión de literatura
+					</h1>
+					<p>Sustentar teoricamente el estudio con teorías enfoques estudios y antecedentes relacionaddos con el problema; de ser necesario se replantea el problema</p>
+					</li>
+					<h1><li>
+						Definicion del alcanze
+					</h1>						
+					<p>Establecer el resultado a obtener con el proyecto (explorar describir, relacionar o explicar)</p>
+					</li>
+				</ol>	
+
+				<ol>
+						<h2>
+					<li>
+						Sistema transaccional (TPS)	
+						</h2>
+						<p>Genera Transacciones punto de venta oxxo tienda..</p>
+					</li>
+					<h1>
+						<li>Sistemas para la planificacion de los recursos de una empresa ERP
+					</h1>
+						</li>
+						<h2><li>
+							Sistemas de informacion gerencial MIS 	
+						</h2>
+						</li>
+						<h2>			
+						<li>
+						Sistema para soporte a la deciocion
+						</h2>
+						</li>
+						<h2><li>Sistemas de informacion para ejecutivos EIS/ESS</li></h2>
+						<h2>
+							<li>Sistemas para la administracion de la cadena de suministros SCM</li>
+						</h2>
+						<h2>
+							<li>Sistema de administracion de relaciones con los consumidores CRM</li>
+						</h2>
+						<h2>
+							<li>Sistemas de tipo market places</li>
+						</h2>
+						<h2>
+							<li>Sistemas de abastecimiento electrónico E</li>
+						</h2>
+						<h2>
+							<li>Sistemas de inteligencia de negocios</li>
+						</h2>
+						<h2>
+							<li>Sistemas de gestion del conocimiento KM o knowledge management</li>
+						</h2>
+						<h2>
+							<li>Sistemas de oficina</li>
+						</h2>
+				</ol>
+				<ul>
+					<li>
+						<h1>Alcance del proyecto</h1> y posibles restricciones del proyecto de investigación las cuales se han documentado en la fase inicial, siendo en la fase de planificación de la investigación donde se describe y se define de forma más específica, en este punto se deben tomar en cuenta los riesgos, supuestos o restricciones para modificar en caso de ser necesario hipótesis y objetivos.
+					</li>
+					<li>
+						<h1>Hipótesis de investigación</h1> 
+						<p>Es una declaración que realizan los investigadores cuando especulan sobre el resultado de una investigación o un experimento </p>
+					</li>
+					<li>
+						<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, pariatur, dignissimos. Assumenda rem dolorum corporis unde eveniet hic voluptas repudiandae eaque illo velit cupiditate porro, non blanditiis consectetur totam ullam?</h1>
+					</li>
+				</ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="Legislasion_lbl">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#Legislasion" aria-expanded="false" aria-controls="Legislasion">
+          Legislasion
+        </a>
+      </h4>
+    </div>
+    <div id="Legislasion" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Legislasion_lbl">
+      <div class="panel-body">
+      <h1>Legislación</h1>
+			<ol>
+				<li>
+					<h2>La Sociedad de la información</h2>
+					<p>Comprende el uso de las </p>
+				</li>
+				<li>
+					<h2></h2>
+					<p>Acto jurídico: es la manifestación de la voluntad que crea, transfiere, modifica o extingue derechos y obligaciones</p>
+					<p><h4>Hecho jurídico: </h4>Acontecimiento ya sea producido por la naturaleza o el hombre de manera involuntaria que produce consecuencias jurídicas.</p>
+				</li>
+				<li>
+					<h2>Elementos de existencia y de validez</h2>
+					<ol>
+						<li>Concentimiento</li>
+						<li>Objeto</li>
+						<li>Solemnidad</li>
+					</ol>
+
+					<ol>
+						<li>Capacidad</li>
+						<li>Licitud</li>
+						<li>Forma</li>
+						<li>Ausencia de vicios de la voluntad (el error, el dolo, la mala fe, la lesión)</li>
+					</ol>
+					
+				</li>
+				<li>
+					<h2></h2>
+					<p></p>
+				</li>
+				<li>
+					<h2></h2>
+					<p></p>
+				</li>
+			</ol>
+      </div>
+    </div>
+  </div>
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="ing_sw_lbl">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#ing_sw" aria-expanded="false" aria-controls="ing_sw">
+          Ingeniería de software
+        </a>
+      </h4>
+    </div>
+    <div id="ing_sw" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ing_sw_lbl">
+      <div class="panel-body">
+      <ol>
+      	<li>
+      		<h3>Ingenieria de software:</h3>
+			<p>Disciplinas para desarrollar,implementar, controlar y mantener el Software</p>
+      	 </li>
+      	<li>
+      		<h3>Importancia de la ingeniería de Software</h3>
+      		<ul>
+      			<li>Establece normas</li>
+      			<li>Permite producir software de calidad</li>
+      			<li>Orden en el proceso de desarrollo</li>
+      			<li>Modelos de referencia</li>
+      		</ul>
+      	</li>
+		<li>
+			<h3>El ciclo de vida del software</h3>
+			<p>Va desde la aparición de la necesidad de una solución informática hasta que el producto se vuelve obsoleto</p>
+		</li>
+		<li>
+			<h3>En que fases se aplica ingeniería de software</h3>
+			<p>En todo el ciclo de vida del software</p>
+		</li>
+		<li>
+			<h3>Buenas prácticas</h3>
+			<p>Son habitos que hacen tu trabajo más fácil y de calidad</p>
+		</li>
+		<li>
+			<h3>Que es CMMI y para que sirve</h3>
+			<ul>
+				<li>Guias para buenas prácticas</li>
+				<li>Mide la madurez (que tan avanzados estan) de los procesos para construir de calidad</li>
+				<li>Modelo de referencia</li>
+			</ul>
+		</li>
+		<li>
+			<h3>Como aplicar CMMI</h3>
+			<ul>
+				<li>Ajustando los procesos del modelo CMMI</li>
+				<li>Analizar procesos</li>
+				<li>Estandarizar procesos para posibles mejoras</li>
+			</ul>
+		</li>
+		<li>
+			<h3>+</h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+		<li>
+			<h3></h3>
+			<p></p>
+		</li>
+      </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>	
+	<script src="js/jquery-2.2.1.min.js" ></script>
+	<script src="js/bootstrap.js" ></script>
+</body>
+</html>
+
+
