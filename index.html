@@ -3,8 +3,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body ng-app="toolbarDemo1" ng-cloak>
+<body ng-app="toolbarDemo1" ng-cloak style="background-color:red;">
   <!--
     Your HTML content here
   -->  
@@ -18,11 +20,14 @@
     <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          <i class="material-icons">dehaze</i>
         </md-button>
         <h2>
-          <span>Toolbar with Disabled/Enabled Icon Buttons</span>
+          <span>Toolbar with Disabled/Enabled Icon Buttons </span>
         </h2>
+        <a class="navbar-brand" href="#">
+        <img alt="Brand" src="img/logo2.png" style="height:60px;">
+      </a>
         <span flex></span>
         <md-button class="md-icon-button" aria-label="Favorite">
           <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
@@ -34,7 +39,7 @@
     </md-toolbar>
 
     <br>
-
+	<!-- 
     <md-toolbar>
       <div class="md-toolbar-tools">
         <md-button aria-label="Go Back">
@@ -48,40 +53,18 @@
           Learn More
         </md-button>
         <md-button class="md-fab md-mini" aria-label="Favorite">
-          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+          <md-icon md-svg-icon="img/icons/ic_menu_24px.svg"></md-icon>
         </md-button>
       </div>
-    </md-toolbar>
+    </md-toolbar> -->
 
     <br>
 
-    <md-toolbar class="md-tall md-accent">
-      <h2 class="md-toolbar-tools">
-        <span>Toolbar: tall (md-accent)</span>
-      </h2>
-    </md-toolbar>
-
-    <br>
-
-    <md-toolbar class="md-tall md-warn md-hue-3">
-      <span flex></span>
-      <h2 class="md-toolbar-tools">
-        <span class="md-flex">Toolbar: tall with actions pin to the bottom (md-warn md-hue-3)</span>
-      </h2>
-    </md-toolbar>
   </md-content>
 </div>
 
 
-Toolbar with Disabled/Enabled Icon Buttons
 
-
-
-GO BACK
-Toolbar with Standard Buttons
-LEARN MORE
-
-  
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
