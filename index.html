@@ -1,90 +1,115 @@
 <html lang="en" >
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="css/jquery.fullpage.min.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
 </head>
-<body ng-app="toolbarDemo1" ng-cloak style="background-color:red;">
+<body ng-app="toolbarDemo1" ng-cloak >
+ 
   <!--
     Your HTML content here
-  -->  
-  
-<div ng-controller="AppCtrl" ng-cloak>
+-->  
+<div ng-controller="AppCtrl" ng-cloak ng-init="user='Mykro'">
+	<md-content>
+		<md-toolbar class="md-hue-2">
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" >
+					<i class="material-icons">dehaze</i>
+				</md-button>
+				<h2>
+					<span>Toolbar with Disabled/Enabled Icon Buttons </span>
+				</h2>
+				<a class="navbar-brand" href="#">
+					<img alt="Brand" src="img/logo2.png" style="height:80%;">
+				</a>
+				<span flex></span>
+				<md-button>{{user}}
+				<md-button class="md-icon-button" aria-label="Favorite" ng-disabled="">
+					
+					<i class="material-icons" style="color: gray;">people</i>
+					
+				</md-button>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="More">
+					<i class="material-icons">more_vert</i>
+				</md-button>
+			</div>
+		</md-toolbar>
+	</md-content>
+<div id="fullpage">
+    <div class="section" id="sec_1">Seccion 1</div>
+    <div class="section" id="sec_2">Seccion 2</div>
+    <div class="section" id="sec_3">Seccion 3</div>
+    <div class="section" id="sec_4">Seccion 4</div>
+</div>
 
-  <md-content>
+	<div  layout="column" style="height: 500px;" ng-cloak>
 
-    <br>
+		<section layout="row" flex>
 
-    <md-toolbar class="md-hue-2">
-      <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-          <i class="material-icons">dehaze</i>
-        </md-button>
-        <h2>
-          <span>Toolbar with Disabled/Enabled Icon Buttons </span>
-        </h2>
-        <a class="navbar-brand" href="#">
-        <img alt="Brand" src="img/logo2.png" style="height:60px;">
-      </a>
-        <span flex></span>
-        <md-button class="md-icon-button" aria-label="Favorite">
-          <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="More">
-          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
+			<md-sidenav class="md-sidenav-left" md-component-id="left"
+			 md-whiteframe="4">
 
-    <br>
-	<!-- 
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <md-button aria-label="Go Back">
-          Go Back
-        </md-button>
-        <h2>
-          <span>Toolbar with Standard Buttons</span>
-        </h2>
-        <span flex></span>
-        <md-button class="md-raised" aria-label="Learn More">
-          Learn More
-        </md-button>
-        <md-button class="md-fab md-mini" aria-label="Favorite">
-          <md-icon md-svg-icon="img/icons/ic_menu_24px.svg"></md-icon>
-        </md-button>
-      </div>
-    </md-toolbar> -->
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+			</md-toolbar>
 
-    <br>
+			<md-content layout-margin>
+				<md-grid-list md-cols="2" md-gutter="string" md-row-height="string" md-on-layout="expr">
+				  <md-grid-tile>holi</md-grid-tile>
+				</md-grid-list>
+				<md-button ng-click="toggleLeft()" class="md-accent">
+					Close this Sidenav
+				</md-button>
+			</md-content>
 
-  </md-content>
+		</md-sidenav>
+
+		<!-- <md-content flex layout-padding>
+
+			<div layout="column" layout-align="top center">
+				<p>
+					Developers can also disable the backdrop of the sidenav.<br/>
+					This will disable the functionality to click outside to close the sidenav.
+				</p>
+
+				<div>
+					<md-button ng-click="toggleLeft()" class="md-raised">
+						Toggle Sidenav {{AppCtrl2.oli}}
+					</md-button>
+				</div>
+
+			</div>
+
+		</md-content> -->
+
+		</section>
+	</div>
 </div>
 
 
 
-  <!-- Angular Material requires Angular.js Libraries -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-  <!-- Angular Material Library -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  
-  <!-- Your application bootstrap  -->
-  <script type="text/javascript">    
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+<!-- Your application bootstrap  -->
+    
+<script src="js/jquery-2.2.1.min.js">   </script> 
+<script src="js/jquery.fullpage.min.js"></script>
+<script src="js/js.js">    
     /**
      * You must include the dependency on 'ngMaterial' 
      */
-     angular.module('toolbarDemo1', ['ngMaterial']).controller('AppCtrl', function($scope) {
-
-	});
-    //angular.module('BlankApp', ['ngMaterial']);
-  </script>
-  
+ </script>
 </body>
 </html>
 
@@ -93,24 +118,5 @@ Copyright 2016 Google Inc. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
 -->
 
-  
-  
-  <!-- Angular Material requires Angular.js Libraries -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-  <!-- Angular Material Library -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  
-  <!-- Your application bootstrap  -->
-  <script type="text/javascript">    
-    /**
-     * You must include the dependency on 'ngMaterial' 
-     */
-    angular.module('BlankApp', ['ngMaterial']);
-  </script>
-  
-</body>
-</html>
+
