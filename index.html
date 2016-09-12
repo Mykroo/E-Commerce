@@ -13,7 +13,7 @@
     Your HTML content here
 -->  
  
-<div ng-controller="AppCtrl" ng-cloak ng-init="user='Log In'">
+<div ng-controller="AppCtrl" ng-cloak ng-init="user='Log In'" id="cuerpo">
 	<md-content>
 		<md-toolbar class="md-hue-2">
 			<div class="md-toolbar-tools">
@@ -74,23 +74,28 @@
     </div>
 </div> -->
 
-<!-- Contenidoooooooooo -->
-<md-content ng-controller="productosCtrl" id="articulos" layout="row" layout-align="space-around center">
-	<md-card>
-		<img class="md-card-image" src="card-image.png" alt="image caption">
-		<md-card-content>
-			<h2>Card headline</h2>
-			<p>Card content</p>
-		</md-card-content>
-		<md-card-footer>
-		Card footer
-		</md-card-footer>
-		<div class="md-actions" layout="row|column" layout-align="start|end|center start|end|center">
-		   <md-button>content</md-button>
-		 </div>
-	</md-card>
-</md-content>
-<!-- end contenido -->
+<!-- Pagina de ventas -->
+
+	<md-content flex-gt-md="80" flex-offset-gt-md="10" layout="row" layout-wrap ng-controller="productosCtrl as prod" id="articulos">
+		<md-card   md-theme= md-theme-watch flex="15" ng-repeat="p in relojes" class="rel_card" layout="column" layout-align="center center" >
+			<img class="md-card-image rel-img" ng-src="{{p.img_src}}" alt="image caption">
+			<md-card-content>
+				<h2>{{p.nombre}} </h2>
+				<p>{{p.ventas}} </p>
+				<p>{{p.precio|currency}} </p>
+			</md-card-content>
+			<md-card-footer>
+			{{p.catego}}
+			</md-card-footer>
+			<div class="md-actions" layout="row" layout-align="center">
+			   <md-button class="md-raised md-primary">
+			   	<i class="material-icons">add_shopping_cart</i>Comprar
+			   </md-button>
+			 </div>
+		</md-card>
+	</md-content>
+
+<!-- end Pagina de ventas -->
 
 	<div  layout="column" style="height: 500px;" ng-cloak>
 

@@ -7,10 +7,17 @@
 	color: white;
 	
 }
+#articulos{
+	background:rgba(0,0,0,0);
+	overflow: auto;
+}
 
+.rel-img{
+	height: 200;
+	width: 200;
+}
 #cuerpo{
-	height: 800px;
-	background-color: red;
+	background:url("/E-Commerce/img/store.jpg") fixed no-repeat center
 }
 
 .material-icons{

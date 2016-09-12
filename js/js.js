@@ -4,7 +4,7 @@
 var app=angular.module('eCommerce', ['ngMaterial'])
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-    .primaryPalette('blue-grey')
+    .primaryPalette('blue')
     .accentPalette('orange');
 });
 
@@ -72,11 +72,34 @@ app.controller('productosCtrl', function($scope){
 });
 
 
-var items={
-  "relojes": [
+var items=[
   {
   "nombre":"Reloj 1",
-  "img_src":"/img/relojes/1.jpg",
+  "img_src":"img/relojes/1.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 2",
+  "img_src":"img/relojes/2.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 3",
+  "img_src":"img/relojes/3.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 4",
+  "img_src":"img/relojes/4.png",
   "catego":"Sport",
   "precio":45.22,
   "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
@@ -84,7 +107,31 @@ var items={
   "calif":5},
   {
   "nombre":"Reloj 1",
-  "img_src":"/img/relojes/1.jpg",
+  "img_src":"img/relojes/1.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 2",
+  "img_src":"img/relojes/2.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 3",
+  "img_src":"img/relojes/3.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 4",
+  "img_src":"img/relojes/4.png",
   "catego":"Sport",
   "precio":45.22,
   "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
@@ -92,7 +139,31 @@ var items={
   "calif":5},
   {
   "nombre":"Reloj 1",
-  "img_src":"/img/relojes/1.jpg",
+  "img_src":"img/relojes/1.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 2",
+  "img_src":"img/relojes/2.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 3",
+  "img_src":"img/relojes/3.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 4",
+  "img_src":"img/relojes/4.png",
   "catego":"Sport",
   "precio":45.22,
   "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
@@ -100,10 +171,33 @@ var items={
   "calif":5},
   {
   "nombre":"Reloj 1",
-  "img_src":"/img/relojes/1.jpg",
+  "img_src":"img/relojes/1.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 2",
+  "img_src":"img/relojes/2.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 3",
+  "img_src":"img/relojes/3.png",
+  "catego":"Sport",
+  "precio":45.22,
+  "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
+  "ventas":456,
+  "calif":5},
+  {
+  "nombre":"Reloj 4",
+  "img_src":"img/relojes/4.png",
   "catego":"Sport",
   "precio":45.22,
   "desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, ea maiores, at, nostrum tempora culpa dolores repudiandae commodi dignissimos atque.",
   "ventas":456,
   "calif":5}]
-}
