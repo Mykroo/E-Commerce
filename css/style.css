@@ -1,8 +1,11 @@
-#header{
+#historia{
+	/*background-color:grey;*/
+	border-radius: 10%;
+	/*opacity: 0.9;*/
+	overflow: auto;
+	font-weight: 600;
+	color: white;
 	
-}
-#footer{
-		
 }
 
 #cuerpo{
