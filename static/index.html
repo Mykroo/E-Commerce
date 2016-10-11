@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {font-family: "GE-Inspira", sans-serif;}
+head {font-family: "GE-Inspira", sans-serif;}
+
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 2px solid black;
+    background-color: #4169E1;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: #FFFAFA;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {
+    background-color: #4169E1;
+}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {
+    background-color: #000080;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+
+}
+
+input[type=file] {
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+}
+
+input[type=text] {
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 0px 12px 10px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 40%;
+}
+
+</style>
+<title>Monitoring Self-Service</title>
+<h1>Monitoring Self-Service</h1>
+
+<body>
+
+<ul class="tab">
+  <li><a href="#" class="tablinks" onclick="Tabs(event, 'UserM')">User Management</a></li>
+  <li><a href="#" class="tablinks" onclick="Tabs(event, 'AlertM')">Alerting Management</a></li>
+  <li><a href="#" class="tablinks" onclick="Tabs(event, 'DT')">Downtimes</a></li>
+  <li><a href="#" class="tablinks" onclick="Tabs(event, 'Rep')">Reporting</a></li>
+  <li><a href="#" class="tablinks" onclick="Tabs(event, 'AcctM')">Account Management</a></li>
+  <li><a href="#" class="tablinks" onclick="Tabs(event, 'AgentM')">Agent Management</a></li>
+</ul>
+
+<div id="UserM" class="tabcontent">
+  <p>
+  <form>
+    Account Name:<br>
+    <input type="text" name="Search" placeholder="Type Account Name.."> <br /> <br />
+    Upload User Template: <br>
+    <input type="file" name="UserTemplate" id="myFile">
+  </form>
+  <br />
+  <button class="button">Add</button>
+  <button class="button">Remove</button>
+  <button class="button">Modify Permissions</button>
+  </p>
+</div>
+
+<div id="AlertM" class="tabcontent">
+  <h3>Alerting Management</h3>
+  <p></p>
+</div>
+
+<div id="DT" class="tabcontent">
+  <h3>Downtimes</h3>
+  <p></p>
+</div>
+
+<div id="Rep" class="tabcontent">
+  <h3>Reporting</h3>
+  <p></p>
+</div>
+
+<div id="AcctM" class="tabcontent">
+  <h3>Account Management</h3>
+  <p></p>
+</div>
+
+<div id="AgentM" class="tabcontent">
+  <h3>Agent Management</h3>
+  <p></p>
+</div>
+
+<script>
+function Tabs(evt, Name) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(Name).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+</script>
+
+</body>
+</html>
