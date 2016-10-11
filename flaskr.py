@@ -52,6 +52,7 @@ def close_db(error):
 
 # *************   END of Database functions ***********************
 
+
 # *************   View functions ***********************
 @app.route('/')
 def show_entries():
@@ -90,5 +91,6 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
 # views secc: http://flask.pocoo.org/docs/0.11/tutorial/templates/#tutorial-templates
 # *************   END View functions ***********************
