@@ -28,7 +28,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ url_for('static', filename='js/jquery.easydropdown.js') }}"></script>
 <script src="{{ url_for('static', filename='js/simpleCart.min.js') }}"> </script>
 </head>
-<div class="men_banner">
+<body>
+	<div class="men_banner">
    	  <div class="container">
    	  	<div class="header_top">
    	  	   <div class="header_top_left">
@@ -76,7 +77,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    </div>
    	  <div class="header_bottom">
 	   <div class="logo">
-		  <h1><a href="index.html"><span class="m_1">U</span>R Time Clocks</a></h1>
+		  <h1><a href="/"><span class="m_1">U</span>R Time Clocks</a></h1>
 	   </div>
 	   <div class="menu">
 	     <ul class="megamenu skyblue">
@@ -153,7 +154,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</li>
 			
 				<li><a class="color10" href="brands.html">Marcas</a></li>
-				<li><a class="color3" href="index.html">Nosotros</a></li>
+				<li><a class="color3" href="/">Nosotros</a></li>
 				<li><a class="color7" href="404.html">Contácto</a></li>
 				<div class="clearfix"> </div>
 			</ul>
@@ -162,3 +163,37 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    </div>
 	  </div>
    </div>
+   
+   {% block body %}{% endblock %}
+   <div class="footer">
+   	 <div class="container">
+   	 	<div class="newsletter">
+			<h3>Newsletter</h3>
+			<p>Simple texto acerca de la generalización de la página</p>
+			<form>
+			  <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+			  <input type="submit" value="SUBSCRIBE">
+			</form>
+		</div>
+   		<div class="cssmenu">
+		   <ul>
+			<li class="active"><a href="#">Privacidad</a></li>
+			<li><a href="#">Terminos</a></li>
+			<li><a href="#">Tienda</a></li>
+			<li><a href="#">Acerca</a></li>
+			<li><a href="contact.html">Contácto</a></li>
+		  </ul>
+		</div>
+		<ul class="social">
+			<li><a href=""> <i class="instagram"> </i> </a></li>
+			<li><a href=""><i class="fb"> </i> </a></li>
+			<li><a href=""><i class="tw"> </i> </a></li>
+	    </ul>
+	    <div class="clearfix"></div>
+	    <div class="copy">
+           <p> &copy; 2015 Relojes. Derechos reservados| Diseño <a href="http://github.com/Mykroo" target="_blank">M&M Design</a></p>
+	    </div>
+   	</div>
+   </div>
+   </body>
+</html>		
