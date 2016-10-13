@@ -21,6 +21,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <!-- start menu -->
 <link href="{{ url_for('static', filename='css/megamenu.css') }}" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="{{ url_for('static', filename='js/megamenu.js') }}"></script>
@@ -33,7 +34,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    	  <div class="container">
    	  	<div class="header_top">
    	  	   <div class="header_top_left">
-	  	      <div class="box_11"><a href="checkout.html">
+	  	      <div class="box_11"><a href="checkout.php">
 		      <h4><p>Carrito: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> artículos)</p><img src="{{ url_for('static', filename='images/bag.png') }}" alt=""/><div class="clearfix"> </div></h4>
 		      </a></div>
 	          <p class="empty"><a href="javascript:;" class="simpleCart_empty">Vaciar Carrito</a></p>
@@ -48,7 +49,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</select>
 			 </div>
 			 <ul class="header_user_info">
-			  <a class="login" href="login.html">
+			  <a class="login" href="login">
 				<i class="user"> </i> 
 				<li class="user_desc">Log in</li>
 			  </a>
@@ -163,8 +164,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    </div>
 	  </div>
    </div>
-   
+
    {% block body %}{% endblock %}
+   {% block log_modals %}{% endblock %}
+
    <div class="footer">
    	 <div class="container">
    	 	<div class="newsletter">

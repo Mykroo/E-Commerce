@@ -1,0 +1,67 @@
+{% extends "main_header.html" %}
+{% block body %}
+<a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
+<div class="modal fade" id="modal-id">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="account-in">
+	<ul class="nav nav-tabs">
+		<li role="presentation" class="active"><a href="#">Inicio de sesión</a></li>
+		<li role="presentation"><a href="#">Profile</a></li>
+		<li role="presentation"><a href="#">Messages</a></li>
+	</ul>
+	<div class="container tab-container">
+		<div class="col-md-6 account-top" role="tabpanel" class="tab-pane active" id="#login_tab">
+			<form>
+				<div> 	
+					<span>Email*</span>
+					<input type="text"> 
+				</div>
+				<div> 
+					<span class="pass">Password*</span>
+					<input type="password">
+				</div>				
+				<input type="submit" value="Login"> 
+			</form>
+		</div>
+		<div class="col-md-6 account-top" id="#SignIn_tab">
+			<form >
+				<div> 	
+					<span>Email*</span>
+					<input type="text"> 
+				</div>
+				<div> 
+					<span class="pass">Password*</span>
+					<input type="password">
+				</div>				
+				<span>Nombre completo*</span>
+				<div class="row">
+					<div class="col-md-6"> 
+						<input type="text" placeholder="Nombre">
+					</div>
+					<div class="col-md-5"> 
+						<input type="text" placeholder="Apellido">
+					</div>
+				</div>
+				<input type="submit" value="Registrarse"> 
+			</form>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+
+{% endblock %}
