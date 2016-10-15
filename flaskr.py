@@ -1,7 +1,8 @@
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash
+     render_template, flash, Response
+from functools import wraps
 
 #creacion de la aplicacion
 app= Flask(__name__)
@@ -16,6 +17,7 @@ app.config.update(dict(
 	PASSWORD='default'
 	))
 app.config.from_envvar('FLASKR_SETTINGS', silent= True)
+
 
 # *************   Database functions ***********************
 def init_db():
@@ -51,7 +53,30 @@ def close_db(error):
         g.sqlite_db.close()
 
 # *************   END of Database functions ***********************
+# *************   Auth functions ***********************
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid.
+    """
+    return username == 'admin' and password == 'secret'
 
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
+
+# *************   END Auth functions ***********************
 
 # *************   View functions ***********************
 @app.route('/')
@@ -59,7 +84,16 @@ def show_entries():
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
+    # return render_template("index.html")
     return render_template('show_entries.html', entries=entries)
+
+@app.route('/men')
+def men_store():
+    return render_template("men.html")
+
+@app.route('/checkout.php')
+def checkout():
+    return render_template("checkout.html")
 
 @app.route('/add', methods=['POST'])
 def add_entry():
@@ -84,7 +118,7 @@ def login():
             session['logged_in'] = True
             flash('You were logged in')
             return redirect(url_for('show_entries'))
-    return render_template('login.html', error=error)
+    return render_template('logon.html', error=error)
 
 @app.route('/logout')
 def logout():
@@ -92,5 +126,11 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+
 # views secc: http://flask.pocoo.org/docs/0.11/tutorial/templates/#tutorial-templates
 # *************   END View functions ***********************
+
+@app.route('/logon')
+@requires_auth
+def secret_page():
+    return render_template('logon.html')
