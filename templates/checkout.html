@@ -87,7 +87,9 @@
 				 <h3>OPCIONES</h3>
 				 <h4>CUPONES</h4>
 				 <a class="cpns" href="#">Applicar Cupones</a>
-				 <p><a href="#">Inicia sesión</a> para usar cupones</p>
+				 {% if not session.logged_in %}
+				 <p><a href="/logon">Inicia sesión</a> para usar cupones</p>
+				 {% endif %}
 			 </div>
 			</div>
 			<div class="clearfix"></div>

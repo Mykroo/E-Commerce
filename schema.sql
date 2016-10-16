@@ -8,17 +8,23 @@ drop table if exists users;
 create table users (
   id integer primary key autoincrement,
   name text not null,
+  lastname text not null,
   mail text not null,
-  'text' text not null
+  street text,
+  num text,
+  edo text,
+  municipio text,
+  cp integer
 );
 drop table if exists products;
 create table products (
   id integer primary key autoincrement,
+  name text not null,
   catego text not null,
   img_file text not null,
   price integer not null,
   description text not null,
-  'text' text not null
+  quantity integer default 100
 );
 
 drop table if exists sales;

@@ -53,43 +53,32 @@ def close_db(error):
         g.sqlite_db.close()
 
 # *************   END of Database functions ***********************
-# *************   Auth functions ***********************
-def check_auth(username, password):
-    """This function is called to check if a username /
-    password combination is valid.
-    """
-    return username == 'admin' and password == 'secret'
-
-def authenticate():
-    """Sends a 401 response that enables basic auth"""
-    return Response(
-    'Could not verify your access level for that URL.\n'
-    'You have to login with proper credentials', 401,
-    {'WWW-Authenticate': 'Basic realm="Login Required"'})
-
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        auth = request.authorization
-        if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
-        return f(*args, **kwargs)
-    return decorated
-
-# *************   END Auth functions ***********************
-
 # *************   View functions ***********************
+
+@app.route('/logon')
+def secret_page():
+    return render_template('logon.html')
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 @app.route('/')
 def show_entries():
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
-    entries = cur.fetchall()
-    # return render_template("index.html")
-    return render_template('show_entries.html', entries=entries)
+    entries= cur.fetchall()
+    cur = db.execute('select name, lastname, mail  from users order by id desc')
+    users = cur.fetchall()
+    
+    return render_template("index.html")
+    # return render_template('show_entries.html', entries=entries, users=users)
 
 @app.route('/men')
 def men_store():
-    return render_template("men.html")
+    db = get_db()
+    cur = db.execute('select * from products order by id desc')
+    entries= cur.fetchall()
+    return render_template("men.html", entries=entries)
 
 @app.route('/checkout.php')
 def checkout():
@@ -106,19 +95,40 @@ def add_entry():
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
 
+@app.route('/add_usr', methods=['POST'])
+def add_usr():
+    if not session.get('logged_in'):
+        abort(401)
+    db = get_db()
+    db.execute('insert into users (name, lastname, mail, password) values (?, ?, ?, ?)',
+                 [request.form['name'], request.form['lastname'], request.form['mail'], request.form['password']])
+    db.commit()
+    flash('New entry was successfully posted')
+    return redirect(url_for('show_entries'))
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
-    if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
-            error = 'Invalid password'
-        else:
-            session['logged_in'] = True
-            flash('You were logged in')
-            return redirect(url_for('show_entries'))
-    return render_template('logon.html', error=error)
+    
+    try:
+        db = get_db()
+        cur = db.execute('select * from users where mail=?', [request.form['username']])
+        data = cur.fetchone()
+        # error = data['password']
+        if request.method == 'POST':
+            if request.form['password'] != data['password']:
+                error = 'Invalid password'
+            else:
+                session['logged_in'] = True
+                session['name'] = data['name'] 
+                session['usr_id'] = data['id'] 
+                flash('You were logged in')
+                return redirect(url_for('show_entries'))
+            return render_template('login.html', error=error)
+    except Exception, e:
+        error ="erroro DB "
+        return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():
@@ -126,11 +136,8 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+    
 
 # views secc: http://flask.pocoo.org/docs/0.11/tutorial/templates/#tutorial-templates
 # *************   END View functions ***********************
 
-@app.route('/logon')
-@requires_auth
-def secret_page():
-    return render_template('logon.html')

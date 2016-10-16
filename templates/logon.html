@@ -26,37 +26,50 @@
 	</ul>
 	<div class="container tab-container">
 		<div class="col-md-6 account-top" role="tabpanel" class="tab-pane active" id="#login_tab">
-			<form>
+			<form action="{{ url_for('login') }}" method=post>
 				<div> 	
 					<span>Email*</span>
-					<input type="text"> 
+					<input type="text" name="username"> 
 				</div>
 				<div> 
 					<span class="pass">Password*</span>
-					<input type="password">
+					<input type="password" name="password">
 				</div>				
 				<input type="submit" value="Login"> 
 			</form>
 		</div>
 		<div class="col-md-6 account-top" id="#SignIn_tab">
-			<form >
-				<div> 	
-					<span>Email*</span>
-					<input type="text"> 
-				</div>
-				<div> 
-					<span class="pass">Password*</span>
-					<input type="password">
-				</div>				
+			<!-- <form action="{{ url_for('add_usr') }}" method=post class=add-entry>
+    		  <dl>
+    		    <dt>Name:
+    		    <dd><input type=text size=30 name=name>
+    		    <dt>Last name:
+    		    <dd><input type=text size=30 name=lastname>
+    		    <dt>Password:
+    		    <dd><input type=password size=30 name=password>
+    		    <dt>Mail:
+    		    <dd><input type=text size=30 name=mail>
+    		    <dd><input type=submit value=Share>
+    		  </dl>
+    		</form> -->
+			<form action="{{ url_for('add_usr') }}" method=post >
 				<span>Nombre completo*</span>
 				<div class="row">
 					<div class="col-md-6"> 
-						<input type="text" placeholder="Nombre">
+						<input type="text" placeholder="Nombre" name=name>
 					</div>
 					<div class="col-md-5"> 
-						<input type="text" placeholder="Apellido">
+						<input type="text" placeholder="Apellido" name=lastname>
 					</div>
 				</div>
+				<div> 	
+					<span>Email*</span>
+					<input type="text" name=mail> 
+				</div>
+				<div> 
+					<span class="pass">Password*</span>
+					<input type="password" name=password>
+				</div>				
 				<input type="submit" value="Registrarse"> 
 			</form>
 		</div>

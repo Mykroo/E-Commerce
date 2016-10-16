@@ -49,17 +49,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</select>
 			 </div>
 			 <ul class="header_user_info">
-			  <a class="login" href="login">
+			 {% if session.logged_in %}
+			  <a class="login" href="logon">
+				<i class="user"> </i> 
+				<li class="user_desc"> {{session.name}}</li>
+			  </a>
+			  <div class="clearfix"> </div>
+			  {% else %}
+			  <a class="login" href="logon">
 				<i class="user"> </i> 
 				<li class="user_desc">Log in</li>
 			  </a>
 			  <div class="clearfix"> </div>
+			  {% endif %}
 		     </ul>
 		    <!-- start search-->
 				<div class="search-box">
 				   <div id="sb-search" class="sb-search">
 					  <form>
-						 <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
+						 <input class="sb-search-input" placeholder="Que deseas buscar..." type="search" name="search" id="search">
 						 <input class="sb-search-submit" type="submit" value="">
 						 <span class="sb-icon-search"> </span>
 					  </form>
@@ -89,11 +97,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="h_nav">
 								<h4>Men</h4>
 								<ul>
-									<li><a href="men.html">Relojes</a></li>
-									<li><a href="men.html">Relojes inteligentes</a></li>
-									<li><a href="men.html">Blazers</a></li>
-									<li><a href="men.html">Suits</a></li>
-									<li><a href="men.html">Trousers</a></li>
+									<li><a href="/men">Relojes</a></li>
+									<li><a href="/men">Relojes inteligentes</a></li>
+									<li><a href="/men">Blazers</a></li>
+									<li><a href="/men">Suits</a></li>
+									<li><a href="/men">Trousers</a></li>
 								</ul>	
 							</div>							
 						</div>
@@ -101,12 +109,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="h_nav">
 								<h4>Deportes</h4>
 								<ul>
-									<li><a href="men.html">Relojes</a></li>
-									<li><a href="men.html">Outerwear</a></li>
-									<li><a href="men.html">Deportivos</a></li>
-									<li><a href="men.html">Handbags</a></li>
-									<li><a href="men.html">Trousers</a></li>
-									<li><a href="men.html">Jeans</a></li>
+									<li><a href="/men">Relojes</a></li>
+									<li><a href="/men">Outerwear</a></li>
+									<li><a href="/men">Deportivos</a></li>
+									<li><a href="/men">Handbags</a></li>
+									<li><a href="/men">Trousers</a></li>
+									<li><a href="/men">Jeans</a></li>
 								</ul>	
 							</div>							
 						</div>
