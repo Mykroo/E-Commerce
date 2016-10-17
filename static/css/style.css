@@ -73,7 +73,7 @@ p.empty a {
 .lang_list{
 	float: left;
     border-right: 1px solid #555;
-	width: 38%;
+	width: 30%;
 }
 /* PREFIXED CSS */
 .dropdown,
@@ -256,7 +256,7 @@ p.empty a {
 ul.header_user_info {
 	float: left;
 	border-right: 1px solid #555;
-	width:50%;
+	width:58%;
 	padding:0;
 	min-height: 30px;
 }

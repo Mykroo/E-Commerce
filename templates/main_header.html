@@ -28,6 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="{{ url_for('static', filename='js/jquery.easydropdown.js') }}"></script>
 <script src="{{ url_for('static', filename='js/simpleCart.min.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/script.js') }}"> </script>
 </head>
 <body>
 	<div class="men_banner">
@@ -52,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 {% if session.logged_in %}
 			  <a class="login" href="logon">
 				<i class="user"> </i> 
-				<li class="user_desc"> {{session.name}}</li>
+				<li class="user_desc"> {{session.name}}/ <a href="/logout">Cerrar Sesión</a></li>
 			  </a>
 			  <div class="clearfix"> </div>
 			  {% else %}

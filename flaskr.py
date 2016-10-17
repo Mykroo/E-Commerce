@@ -1,3 +1,5 @@
+#!/usr/env python
+# -*- coding: utf-8 -*-
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -55,9 +57,11 @@ def close_db(error):
 # *************   END of Database functions ***********************
 # *************   View functions ***********************
 
+
 @app.route('/logon')
 def secret_page():
     return render_template('logon.html')
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
@@ -80,9 +84,15 @@ def men_store():
     entries= cur.fetchall()
     return render_template("men.html", entries=entries)
 
-@app.route('/checkout.php')
+@app.route('/checkout.php', methods=['POST','GET'])
 def checkout():
-    return render_template("checkout.html")
+    if request.method == 'POST':
+        db = get_db()
+        cur = db.execute('select * from products order by id desc')
+        entries= cur.fetchall()
+        return render_template("checkout.html", entries=entries)
+    else:
+        return render_template("checkout.html")
 
 @app.route('/add', methods=['POST'])
 def add_entry():
@@ -95,15 +105,15 @@ def add_entry():
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
 
-@app.route('/add_usr', methods=['POST'])
+@app.route('/add_usr', methods=['POST','GET'])
 def add_usr():
-    if not session.get('logged_in'):
-        abort(401)
+    # if not session.get('logged_in'):
+        # abort(401)
     db = get_db()
     db.execute('insert into users (name, lastname, mail, password) values (?, ?, ?, ?)',
                  [request.form['name'], request.form['lastname'], request.form['mail'], request.form['password']])
     db.commit()
-    flash('New entry was successfully posted')
+    flash('Usuario registrado puedes iniciar sesión')
     return redirect(url_for('show_entries'))
 
 
@@ -123,17 +133,29 @@ def login():
                 session['logged_in'] = True
                 session['name'] = data['name'] 
                 session['usr_id'] = data['id'] 
-                flash('You were logged in')
-                return redirect(url_for('show_entries'))
+                return redirect(url_for('login'))
             return render_template('login.html', error=error)
     except Exception, e:
-        error ="erroro DB "
-        return render_template('login.html', error=error)
+        error ="Identificacion no valida, intenta de nuevo "
+        return redirect(url_for('show_entries'))
+        # return render_template('login.html', error=error)
 
-@app.route('/logout')
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash("Necesitas iniciar sesion")
+            return redirect(url_for('login'))
+        
+    return wrap
+
+@app.route('/logout/')
+@login_required
 def logout():
-    session.pop('logged_in', None)
-    flash('You were logged out')
+    # session.pop('logged_in', None)
+    session.clear()
     return redirect(url_for('show_entries'))
 
     
