@@ -40,9 +40,15 @@ $(document).ready(function() {
 		window.location="/";
 	});
 
+	var json=JSON.parse(localStorage.simpleCart_items);
+	props = Object.getOwnPropertyNames ( json );
+	var aux=new Array();
+	for (var i = 0; i < props.length; i++) {
+		aux.push({'id_prod':json[props[i]].name,'price':json[props[i]].price,'qty':json[props[i]].quantity}); 
+	}
+	$('#json').val(JSON.stringify(aux))
+
 });
-	
- 
 var close_item_car=function(){
 	$(this).parent().fadeOut('slow', function(c){ });
 }

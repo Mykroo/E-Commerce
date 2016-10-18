@@ -6,7 +6,7 @@
 		<center>
 			<h1>Datos para envió y pago</h1>
 		</center>
-			<form action="{{ url_for('sale') }}" method=post>
+			<form action="{{ url_for('sale') }}" method=post id="form_pay">
 				<div class="row col-md-4 col-md-offset-2"> 	
 					<span>País*</span>
 					<input type="text" name="country">  	
@@ -29,23 +29,24 @@
 				</div>	
 				<div class="row col-md-4 col-md-offset-4"> 
 					<span>Numero de tarjeta*</span>
-					<input type="text" name="username">  	
+					<input type="text" name="cred_number">  	
 					<span>Fecha de expiración y CVC*</span>
 					<div class="row">
 						<div class="col-md-3"> 
-							<input type="text" placeholder="MM" name=name>/
+							<input type="text" placeholder="MM" name=month>/
 						</div>
 						<div class="col-md-3"> 
-							<input type="text" placeholder="YY" name=lastname>
+							<input type="text" placeholder="YY" name=year>
 						</div>
 						<div class="col-md-5"> 
-							<input type="text" placeholder="XXX" name=lastname>
+							<input type="text" placeholder="XXX" name=cvc>
 						</div>
 					</div>
 					<center>
 						<input type="submit" value="Pagar"> 
 						<input type="button" id="cancel_pay" value="Cancelar compra">
 					</center>
+					<input type="text" name="json" id="json" hidden="">
 				</div>				
 			</form>
 		</div>
