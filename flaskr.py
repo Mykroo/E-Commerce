@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 import os
 import sqlite3
+from test import ret_d
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash, Response
+     render_template, flash, Response, json
 from functools import wraps
 
 #creacion de la aplicacion
@@ -19,7 +20,6 @@ app.config.update(dict(
 	PASSWORD='default'
 	))
 app.config.from_envvar('FLASKR_SETTINGS', silent= True)
-
 
 # *************   Database functions ***********************
 def init_db():
@@ -58,7 +58,7 @@ def close_db(error):
 # *************   View functions ***********************
 
 
-@app.route('/logon')
+@app.route('/logon.aspx')
 def secret_page():
     return render_template('logon.html')
 
@@ -82,17 +82,77 @@ def men_store():
     db = get_db()
     cur = db.execute('select * from products order by id desc')
     entries= cur.fetchall()
-    return render_template("men.html", entries=entries)
+    cur = db.execute('select catego, count(catego) as count from products group by catego')
+    categorias=cur.fetchall()
+    return render_template("men.html", entries=entries, categos=categorias)
 
 @app.route('/checkout.php', methods=['POST','GET'])
 def checkout():
     if request.method == 'POST':
+        json_data = json.loads(request.form['json_data'])
         db = get_db()
         cur = db.execute('select * from products order by id desc')
         entries= cur.fetchall()
         return render_template("checkout.html", entries=entries)
     else:
         return render_template("checkout.html")
+    return ""
+
+@app.route('/ret_cart',methods=['POST','GET'])
+def ret_cart():
+    if request.method == 'POST':
+        db = get_db()
+        ids = request.form['ids']
+        qty = request.form['qty']
+        DATOS= (1)
+        cur = db.execute('select * from products where id in ('+ids+')')
+        res = cur.fetchall()
+        # aux = "["
+        # for  row in res:
+            # aux+="{"
+            # aux += '"id":'+str(row[0])+',"name": "'+str(row[1])+'","img_file":"'+str(row[3])+'","price":"'+str(row[4])+'","qty":"'+str(row[6])+'"'
+            # aux+="},"
+        # aux=aux[:len(aux)-1]+"]"
+        aux=""
+        for  row in res:
+            
+            aux+='<div class="cart-header2">'\
+            ' <div class="close2"> </div>'\
+            '  <div class="cart-sec simpleCart_shelfItem">'\
+            '        <div class="cart-item cyc">'\
+            '             <img src="/static/images/'+str(row[3])+'" class="img-responsive" alt="">'\
+            '        </div>'\
+            '       <div class="cart-item-info">'\
+            '        <h3><a href="#">'+str(row[1])+'</a><span>Modelo #: '+str(row[0])+'</span></h3>'\
+            '        <ul class="qty">'\
+            '            <li><p>Tamaño : 5</p></li>'\
+            '            <li><p>Cantidad Restante: '+str(row[6])+' </p></li>'\
+            '        </ul>'\
+            '             <div class="delivery">'\
+            '             <p>Cargos de servicio: 100.00</p>'\
+            '             <span>Envió de 2 a 3 días hábiles</span>'\
+            '             <div class="clearfix"></div>'\
+            '        </div>  '\
+            '       </div>'\
+            '       <div class="clearfix"></div>'\
+            '  </div>'\
+            '</div>'
+            # aux += '"id":'+str(row[0])+',"name": "'+str(row[1])+'","img_file":"'+str(row[3])+'","price":"'+str(row[4])+'","qty":"'+str(row[6])+'"'
+            
+        # aux=aux[:len(aux)-1]+"]"
+        return str(aux)
+    else:
+        db = get_db()
+        cur = db.execute('select * from products ')
+        res = cur.fetchall()
+        aux = "["
+        for  row in res:
+            aux+="{"
+            aux += '"id":'+str(row[0])+',"name": "'+str(row[1])+'","img_file":"'+str(row[3])+'","price":"'+str(row[4])+'","qty":"'+str(row[6])+'"'
+            aux+="},"
+        aux=aux[:len(aux)-1]+"]"
+        return "str(aux)"
+
 
 @app.route('/add', methods=['POST'])
 def add_entry():

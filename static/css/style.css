@@ -1264,6 +1264,10 @@ ul.women_pagenation li a:hover{
 	overflow: hidden;
 	display: block;
 }
+.mask1>img{
+	height: 293px;
+
+}
 img.zoom-img {
 	-webkit-transform: scale(1, 1);
 	-webkit-transition-timing-function: ease-out;

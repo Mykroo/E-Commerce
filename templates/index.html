@@ -51,13 +51,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 </div>
 			 <ul class="header_user_info">
 			  {% if session.logged_in %}
-			  <a class="login" href="logon">
+			  <a class="login" href="/logon.aspx">
 				<i class="user"> </i> 
 				<li class="user_desc"> {{session.name}}/ <a href="/logout">Cerrar Sesión</a></li>
 			  </a>
 			  <div class="clearfix"> </div>
 			  {% else %}
-			  <a class="login" href="logon">
+			  <a class="login" href="/logon.aspx">
 				<i class="user"> </i> 
 				<li class="user_desc">Log in</li>
 			  </a>
