@@ -15,8 +15,10 @@
 					});
 
 			   </script>
-			   <div class="carrito"></div>
-			  <div class="cart-header2">
+
+			   <!-- <div class="simpleCart_items"></div> -->
+			   <!-- <div class="carrito"></div> -->
+			  <!-- <div class="cart-header2">
 				 <div class="close2"> </div>
 				  <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
@@ -37,14 +39,6 @@
 					   <div class="clearfix"></div>
 				  </div>
 			  </div>	
-			 <script>$(document).ready(function(c) {
-					$('.close2').on('click', function(c){
-							$('.cart-header2').fadeOut('slow', function(c){
-						$('.cart-header2').remove();
-					});
-					});	  
-					});
-			 </script>
 			 <div class="cart-header2">
 				 <div class="close2"> </div>
 				  <div class="cart-sec simpleCart_shelfItem">
@@ -65,13 +59,13 @@
 					   </div>
 					   <div class="clearfix"></div>
 				  </div>
-			  </div>		
+			  </div> -->		
 		 </div>
 		 <div class="col-md-3 cart-total">	
 		 <div class="price-details">
 				 <h3>Detalles De Precios</h3>
 				 <span>Total</span>
-				 <span class="total1">6200.00</span>
+				 <span class="total1"><div class="simpleCart_total"></div></span>
 				 <span>Descuento</span>
 				 <span class="total1">---</span>
 				 <span>Cargos de envió</span>
@@ -80,7 +74,7 @@
 			 </div>	
 			 <ul class="total_price">
 			   <li class="last_price"> <h4>TOTAL</h4></li>	
-			   <li class="last_price"><span>6350.00</span></li>
+			   <li class="last_price"><span><div class="simpleCart_tota"></div></span></li>
 			   <div class="clearfix"> </div>
 			 </ul>
 			 <div class="clearfix"></div>
@@ -98,5 +92,21 @@
 	     </div>
 	  </div>
    </div>
-   
+   <script>
+   	$(function() {
+   		$('.close2').on('click', function(c){
+			// c.remove()
+			console.log("oli");
+			// $('.cart-header2').fadeOut('slow', function(c){
+			$(this).parent().fadeOut("slow", function(c){});
+		});		
+		json_cart=JSON.parse(localStorage.simpleCart_items);
+		props = Object.getOwnPropertyNames ( json_cart )
+		var tot=0;
+		for (var i = 0; i < props.length; i++) {
+			tot+=json_cart[props[i]].quantity*json_cart[props[i]].price;
+		}
+		$('.simpleCart_tota').html("$"+(tot+150)+".00")
+	});
+   </script>
    {% endblock %}

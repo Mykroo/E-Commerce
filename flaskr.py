@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sqlite3
-from test import ret_d
+# from test import ret_d
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, Response, json
 from functools import wraps
@@ -114,32 +114,53 @@ def ret_cart():
             # aux+="},"
         # aux=aux[:len(aux)-1]+"]"
         aux=""
+        i=0
         for  row in res:
             
-            aux+='<div class="cart-header2">'\
-            ' <div class="close2"> </div>'\
-            '  <div class="cart-sec simpleCart_shelfItem">'\
-            '        <div class="cart-item cyc">'\
-            '             <img src="/static/images/'+str(row[3])+'" class="img-responsive" alt="">'\
-            '        </div>'\
-            '       <div class="cart-item-info">'\
-            '        <h3><a href="#">'+str(row[1])+'</a><span>Modelo #: '+str(row[0])+'</span></h3>'\
-            '        <ul class="qty">'\
-            '            <li><p>Precio : $'+str(row[4])+'.00</p></li>'\
-            '            <li><p>Cantidad Restante: '+str(row[6])+' </p></li>'\
-            '        </ul>'\
-            '             <div class="delivery">'\
-            '             <p>Cargos de servicio: $100.00</p>'\
-            '             <span>Envió de 2 a 3 días hábiles</span>'\
-            '             <div class="clearfix"></div>'\
-            '        </div>  '\
-            '       </div>'\
-            '       <div class="clearfix"></div>'\
-            '  </div>'\
+            aux+='<div class="cart-header2" id="itemCart_'+str(i)+'">\n'\
+            ' <div class="close2" onclick=" '\
+            '   $(this).parent().fadeOut(\'slow\', function(c){{\n'\
+            '       json_cart=JSON.parse(localStorage.simpleCart_items);\n'   \
+            '       props = Object.getOwnPropertyNames ( json_cart )\n'   \
+            '       delete json_cart[props['+str(i)+']]\n'   \
+            '       localStorage.simpleCart_items=JSON.stringify(json_cart)\n'   \
+            '       window.location.reload()\n'   \
+            '                                                                \n'   \
+            '                                                                \n'   \
+            '   }});"> </div>\n'\
+            '  <div class="cart-sec simpleCart_shelfItem">\n'\
+            '        <div class="cart-item cyc">\n'\
+            '             <img src="/static/images/'+str(row[3])+'" class="img-responsive" alt="">\n'\
+            '        </div>\n'\
+            '       <div class="cart-item-info">\n'\
+            '        <h3><a href="#">'+str(row[1])+'</a><span>Modelo #: '+str(row[0])+'</span></h3>\n'\
+            '        <ul class="qty">\n'\
+            '            <li><p>Precio : $'+str(row[4])+'.00</p></li>\n'\
+            '            <li><p>Cantidad Restante: '+str(row[6])+' </p></li>\n'\
+            '        </ul>\n'\
+            '             <div class="delivery">\n'\
+            '             <p>Cargos de servicio: $100.00</p>\n'\
+            '             <span>Envió de 2 a 3 días hábiles</span>\n'\
+            '             <div class="clearfix"></div>\n'\
+            '        </div>  \n'\
+            '       </div>\n'\
+            '       <div class="clearfix"></div>\n'\
+            '  </div>\n'\
             '</div>'
             # aux += '"id":'+str(row[0])+',"name": "'+str(row[1])+'","img_file":"'+str(row[3])+'","price":"'+str(row[4])+'","qty":"'+str(row[6])+'"'
-            
+            i+=1
         # aux=aux[:len(aux)-1]+"]"
+        #aux+='<script>$(document).ready(function(c) {'\
+        #     '       $(".close2").on("click", function(c){'\
+        #     '                   // c.remove()'\
+        #     '               // console.log(c.id())'\
+        #     '               // $(".cart-header2").fadeOut("slow", function(c){'\
+        #     '               $(this).parent().fadeOut("slow", function(c){'\
+        #     '                   // $(".cart-header2").remove();'\
+        #     '       });'\
+        #     '       });   '\
+        #     '       });'\
+        #     '</script>'
         return str(aux)
     else:
         db = get_db()
@@ -152,6 +173,23 @@ def ret_cart():
             aux+="},"
         aux=aux[:len(aux)-1]+"]"
         return "str(aux)"
+
+@app.route('/sale', methods=['POST'])
+def sale():
+    if request.method== 'POST':
+        try:
+            db = get_db()
+            db.execute('insert into shiping (id_venta, country, edo, mun, cp, fracc, calle, nume, tel) values (55, ?, ?, ?, ?, ?, ?, ?, ?)',
+                         [request.form['country'], request.form['edo'], request.form['mun'], request.form['cp'], request.form['fracc'], request.form['calle'], request.form['num'], request.form['tel'] ])
+            db.commit()
+            flash('New entry was successfully posted')
+        except Exception, e:
+            flash("Not valid")
+        return render_template('payment.html')
+    else:
+        return render_template('payment.html')
+
+
 
 @app.route('/add', methods=['POST'])
 def add_entry():

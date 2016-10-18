@@ -28,8 +28,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="{{ url_for('static', filename='js/jquery.easydropdown.js') }}"></script>
 <script src="{{ url_for('static', filename='js/simpleCart.min.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/script.js') }}"> </script>
 </head>
 <body>
+	{% for message in get_flashed_messages() %}
+    	<div class=flash>{{ message }}</div>
+  	{% endfor %}
 	<div class="men_banner">
    	  <div class="container">
    	  	<div class="header_top">
@@ -206,6 +210,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    </div>
    	</div>
    </div>
-	<script src="{{ url_for('static', filename='js/script.js') }}"> </script>
    </body>
 </html>		

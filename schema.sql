@@ -33,3 +33,17 @@ create table sales (
   products text not null,
   'text' text not null
 );
+CREATE TABLE if not exists sales (
+CREATE TABLE sales (
+    id      INTEGER NOT NULL,
+    id_usr  INTEGER NOT NULL,
+    id_prod INTEGER NOT NULL,
+    qty     INTEGER,
+    price   INTEGER,
+    total   INTEGER,
+    PRIMARY KEY (
+        id,
+        id_usr,
+        id_prod
+    )
+);

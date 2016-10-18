@@ -28,10 +28,21 @@ $(document).ready(function() {
 
 	$.post('/ret_cart', {ids: ids.toString() ,qty:qty.toString()}, function(data, textStatus, xhr) {
 		/*optional stuff to do after success */
-		$('.carrito').html(data);
+		$('.cart-items').append(data);
+
 		//console.log(data);
 	});
+	$('.cls2').click(function(event) {/* Act on the event */console.log("clicks")});
+
+	$('.cancel_pay').on('click', function(event) {
+		/* Act on the event */
+		localStorage.pop('simpleCart_items');
+		window.location="/";
+	});
+
 });
-$(function() {
-// code here
-});
+	
+ 
+var close_item_car=function(){
+	$(this).parent().fadeOut('slow', function(c){ });
+}
