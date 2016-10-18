@@ -103,7 +103,7 @@ def ret_cart():
     if request.method == 'POST':
         db = get_db()
         ids = request.form['ids']
-        qty = request.form['qty']
+        qty = request.form.getlist('qty')[0].split(',')
         DATOS= (1)
         cur = db.execute('select * from products where id in ('+ids+')')
         res = cur.fetchall()
@@ -125,11 +125,11 @@ def ret_cart():
             '       <div class="cart-item-info">'\
             '        <h3><a href="#">'+str(row[1])+'</a><span>Modelo #: '+str(row[0])+'</span></h3>'\
             '        <ul class="qty">'\
-            '            <li><p>Tamaño : 5</p></li>'\
+            '            <li><p>Precio : $'+str(row[4])+'.00</p></li>'\
             '            <li><p>Cantidad Restante: '+str(row[6])+' </p></li>'\
             '        </ul>'\
             '             <div class="delivery">'\
-            '             <p>Cargos de servicio: 100.00</p>'\
+            '             <p>Cargos de servicio: $100.00</p>'\
             '             <span>Envió de 2 a 3 días hábiles</span>'\
             '             <div class="clearfix"></div>'\
             '        </div>  '\
@@ -152,7 +152,6 @@ def ret_cart():
             aux+="},"
         aux=aux[:len(aux)-1]+"]"
         return "str(aux)"
-
 
 @app.route('/add', methods=['POST'])
 def add_entry():
@@ -218,6 +217,10 @@ def logout():
     session.clear()
     return redirect(url_for('show_entries'))
 
+@app.route('/payment.jsp')
+@login_required
+def payment():
+    return render_template("payment.html")
     
 
 # views secc: http://flask.pocoo.org/docs/0.11/tutorial/templates/#tutorial-templates

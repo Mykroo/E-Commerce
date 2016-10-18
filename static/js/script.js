@@ -29,7 +29,7 @@ $(document).ready(function() {
 	$.post('/ret_cart', {ids: ids.toString() ,qty:qty.toString()}, function(data, textStatus, xhr) {
 		/*optional stuff to do after success */
 		$('.carrito').html(data);
-		console.log(data);
+		//console.log(data);
 	});
 });
 $(function() {

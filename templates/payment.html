@@ -1,0 +1,51 @@
+{% extends "main_header.html" %}
+{% block body %}
+
+<div class="container-fluid row">
+	<div class="col-md-8 col-md-offset-2 account-top" role="tabpanel" class="tab-pane active" id="#login_tab">
+		<center>
+			<h1>Datos para envió y pago</h1>
+		</center>
+			<form action="{{ url_for('login') }}" method=post>
+				<div class="row col-md-4 col-md-offset-2"> 	
+					<span>País*</span>
+					<input type="text" name="username">  	
+					<span>Estado*</span>
+					<input type="text" name="username">  	
+					<span>Municipio*</span>
+					<input type="text" name="username">  	
+					<span>Código Postal*</span>
+					<input type="text" name="username"> 
+				</div>
+				<div class="row col-md-4"> 
+					<span>Fraccionamiento*</span>
+					<input type="text" name="username">  	
+					<span>Calle*</span>
+					<input type="text" name="username">  	
+					<span>Número*</span>
+					<input type="text" name="username">  	
+					<span>Teléfono*</span>
+					<input type="text" name="username"> 
+				</div>	
+				<div class="row col-md-4 col-md-offset-4"> 
+					<span>Numero de tarjeta*</span>
+					<input type="text" name="username">  	
+					<span>Fecha de expiración y CVC*</span>
+					<div class="row">
+						<div class="col-md-3"> 
+							<input type="text" placeholder="MM" name=name>/
+						</div>
+						<div class="col-md-3"> 
+							<input type="text" placeholder="YY" name=lastname>
+						</div>
+						<div class="col-md-5"> 
+							<input type="text" placeholder="XXX" name=lastname>
+						</div>
+					</div>
+					<center><input type="submit" value="Pagar"> </center>
+				</div>				
+			</form>
+		</div>
+</div>
+
+{% endblock %}

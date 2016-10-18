@@ -1,10 +1,6 @@
 {% extends "main_header.html" %}
 {% block body %}
-   <form style=" display:block" action="{{url_for('ret_cart')}}" method="POST" id="jsonForm">
-   			<input type="text" name="ids" id="ids">
-   			<input type="text" name="qty" id="qty">
-			<input type="submit">		
-   </form>
+   
    <div class="account-in">
    	 <div class="container">
 		  <div class="check_box">	 
@@ -88,7 +84,7 @@
 			   <div class="clearfix"> </div>
 			 </ul>
 			 <div class="clearfix"></div>
-			 <a class="order" href="#">Realizar Pedido</a>
+			 <a class="order" href="/payment.jsp">Realizar Pedido</a>
 			 <div class="total-item">
 				 <h3>OPCIONES</h3>
 				 <h4>CUPONES</h4>
