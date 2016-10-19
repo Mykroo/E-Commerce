@@ -29,6 +29,7 @@
 <br><br>	
 {% if not session.logged_in %}
 <div class="container tab-container">
+		{% if not session.logged_in %}
 		<div class="col-md-6 account-top" role="tabpanel" class="tab-pane active" id="#login_tab">
 			<form action="{{ url_for('login') }}" method=post>
 				<div> 	
@@ -77,6 +78,36 @@
 				<input type="submit" value="Registrarse"> 
 			</form>
 		</div>
+		{% else %}
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Folio de compra</th>
+						<th>Fecha de compra</th>
+						<th>Datos de envio</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+		{% for e in sales %}
+					<tr>
+						<td> {{e.id}} </td>
+						<td> {{e.date}} </td>
+						<td> {{e.country+ ", "+e.mun +" "+e.calle+ " "+e.fracc+" "+ e.nume|string}} </td>
+						<td> <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> </td>
+					</tr>
+		{% else %}
+				</tbody>
+			</table>
+			<div class="well well-md">
+				<center>
+					<h1>No has comprado nada aún </h1>
+					<br>
+					<h1>¡¡¡Ha gastar se ha dicho!!!!</h1>
+				</center>
+			</div>
+		{% endfor %}
+		{% endif %}
 		<div class="clearfix"> </div>
 	</div>
 	{% else %}<div class="container col-md-10 col-md-offset-1">
