@@ -1,6 +1,6 @@
 {% extends "main_header.html" %}
 {% block body %}
-<a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
+<!-- <a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
 <div class="modal fade" id="modal-id">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -24,7 +24,10 @@
 		<li role="presentation"><a href="#">Profile</a></li>
 		<li role="presentation"><a href="#">Messages</a></li>
 	</ul>
-	<div class="container tab-container">
+	
+</div> -->
+<br><br>	
+<div class="container tab-container">
 		<div class="col-md-6 account-top" role="tabpanel" class="tab-pane active" id="#login_tab">
 			<form action="{{ url_for('login') }}" method=post>
 				<div> 	
@@ -75,6 +78,4 @@
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-</div>
-
 {% endblock %}

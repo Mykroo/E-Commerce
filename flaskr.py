@@ -174,20 +174,29 @@ def ret_cart():
         aux=aux[:len(aux)-1]+"]"
         return "str(aux)"
 
-@app.route('/sale', methods=['POST'])
+@app.route('/sale', methods=['POST', 'GET'])
 def sale():
     if request.method== 'POST':
         try:
             db = get_db()
-            db.execute('insert into shiping (id_venta, country, edo, mun, cp, fracc, calle, nume, tel) values (55, ?, ?, ?, ?, ?, ?, ?, ?)',
+            session['usr_id']
+
+            db.execute('insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', ?, ?, ?, ?, ?, ?, ?, ?)',
                          [request.form['country'], request.form['edo'], request.form['mun'], request.form['cp'], request.form['fracc'], request.form['calle'], request.form['num'], request.form['tel'] ])
             db.commit()
-            flash('New entry was successfully posted')
+            
+            id_ship = db.execute('select max(id) from shiping').fetchone()[0]
+            jsondat=json.loads( request.form['json'])
+            flach=""
+            for item in jsondat:
+                flach='insert into sales (id_ship, id_prod, qty, price) values ('+str(id_ship)+', ' + str(item['id_prod'])+ ', ' +str(item['qty'])+ ', '+str(item['price'])+ ')'
+                # db.execute(flach)
+            flash('New entry was successfully posted '+flach)
         except Exception, e:
-            flash("Not valid")
+            flash('Bad data not uploaded')#insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', '+request.form['country']+', '+request.form['edo']+', '+request.form['mun']+', '+request.form['cp']+', '+request.form['fracc']+', '+request.form['calle']+', '+request.form['num']+','+request.form['tel']+')')
         return render_template('payment.html')
     else:
-        return render_template('payment.html')
+        return str(session['usr_id'])#render_template('payment.html')
 
 
 
@@ -244,7 +253,7 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash("Necesitas iniciar sesion")
-            return redirect(url_for('login'))
+            return redirect(url_for('secret_page'))
         
     return wrap
 
