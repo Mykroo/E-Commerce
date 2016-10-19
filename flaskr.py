@@ -60,7 +60,14 @@ def close_db(error):
 
 @app.route('/logon.aspx')
 def secret_page():
-    return render_template('logon.html')
+    if not session.get('usr_id') :
+        return render_template("logon.html")
+    else:
+        db = get_db()
+        cur = db.execute('select * from shiping where id_usr= ?', [session['usr_id']])
+        sales=cur.fetchall()
+        return render_template("logon.html", sales=sales)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -188,10 +195,13 @@ def sale():
             id_ship = db.execute('select max(id) from shiping').fetchone()[0]
             jsondat=json.loads( request.form['json'])
             flach=""
+            artis=0
             for item in jsondat:
                 flach='insert into sales (id_ship, id_prod, qty, price) values ('+str(id_ship)+', ' + str(item['id_prod'])+ ', ' +str(item['qty'])+ ', '+str(item['price'])+ ')'
-                # db.execute(flach)
-            flash('New entry was successfully posted '+flach)
+                db.execute(flach)
+                db.commit()
+                artis+=1
+            flash('New entry was successfully posted '+ str(artis) + str(flach))
         except Exception, e:
             flash('Bad data not uploaded')#insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', '+request.form['country']+', '+request.form['edo']+', '+request.form['mun']+', '+request.form['cp']+', '+request.form['fracc']+', '+request.form['calle']+', '+request.form['num']+','+request.form['tel']+')')
         return render_template('payment.html')

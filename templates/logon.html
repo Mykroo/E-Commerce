@@ -27,6 +27,7 @@
 	
 </div> -->
 <br><br>	
+{% if not session.logged_in %}
 <div class="container tab-container">
 		<div class="col-md-6 account-top" role="tabpanel" class="tab-pane active" id="#login_tab">
 			<form action="{{ url_for('login') }}" method=post>
@@ -78,4 +79,28 @@
 		</div>
 		<div class="clearfix"> </div>
 	</div>
+	{% else %}<div class="container col-md-10 col-md-offset-1">
+		
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Numero de venta</th>
+					<th>Nombre usuario</th>
+					<th>Datos de envío</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for entry in sales %}
+				<tr>
+					<td>{{entry.id}}</td>
+					<td>{{ session.name }}</td>
+					<td>{{ entry.country+ ", "+ entry.mun +", "+entry.calle +" " }}</td>
+				</tr>
+			{% else %}
+				<li><em>Unbelievable.  No entries here so far</em>
+			{% endfor %}
+			
+		</table>
+	</div>
+	{% endif %}
 {% endblock %}
