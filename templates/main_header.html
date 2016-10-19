@@ -32,8 +32,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body>
 	{% for message in get_flashed_messages() %}
-    	<div class=flash>{{ message }}</div>
+		<div class="flash alert alert-success fade in">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
+			<strong> Atención </strong>{{"  "+message}}
+		</div>
   	{% endfor %}
+  	{% if error is defined %}
+		<div class="flash alert alert-success fade in">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
+			<strong> Atención </strong>{{"  "+error}}
+		</div>
+  	{% endif %}
 	<div class="men_banner">
    	  <div class="container">
    	  	<div class="header_top">
@@ -178,6 +187,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    </div>
 
    {% block body %}{% endblock %}
+   
    {% block log_modals %}{% endblock %}
 
    <div class="footer">

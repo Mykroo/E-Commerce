@@ -1,12 +1,14 @@
 #!/usr/env python
 # -*- coding: utf-8 -*-
 import os
+import sys
 import sqlite3
 # from test import ret_d
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, Response, json
 from functools import wraps
-
+reload(sys)
+sys.setdefaultencoding("utf-8")
 #creacion de la aplicacion
 app= Flask(__name__)
 app.config.from_object(__name__)
@@ -22,7 +24,7 @@ app.config.update(dict(
 app.config.from_envvar('FLASKR_SETTINGS', silent= True)
 
 # *************   Database functions ***********************
-def init_db():
+def init_db(): 
     db = get_db()
     with app.open_resource('schema.sql', mode='r') as f:
         db.cursor().executescript(f.read())
@@ -60,7 +62,13 @@ def close_db(error):
 
 @app.route('/logon.aspx')
 def secret_page():
-    return render_template('logon.html')
+    if session.get('logged_in'):
+        db= get_db()
+        c= db.execute('select * from shiping where id_usr= ?', [session['usr_id']])
+        sales = c.fetchall()
+        return render_template('logon.html',sales=sales)
+    else:
+        return render_template('logon.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -190,8 +198,9 @@ def sale():
             flach=""
             for item in jsondat:
                 flach='insert into sales (id_ship, id_prod, qty, price) values ('+str(id_ship)+', ' + str(item['id_prod'])+ ', ' +str(item['qty'])+ ', '+str(item['price'])+ ')'
-                # db.execute(flach)
-            flash('New entry was successfully posted '+flach)
+                db.execute(flach)
+                db.commit()
+            flash('New entry was successfully posted ')
         except Exception, e:
             flash('Bad data not uploaded')#insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', '+request.form['country']+', '+request.form['edo']+', '+request.form['mun']+', '+request.form['cp']+', '+request.form['fracc']+', '+request.form['calle']+', '+request.form['num']+','+request.form['tel']+')')
         return render_template('payment.html')
@@ -223,7 +232,7 @@ def add_usr():
     return redirect(url_for('show_entries'))
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     error = None
     
@@ -235,15 +244,18 @@ def login():
         if request.method == 'POST':
             if request.form['password'] != data['password']:
                 error = 'Invalid password'
+                return render_template('logon.html', error)
             else:
                 session['logged_in'] = True
                 session['name'] = data['name'] 
                 session['usr_id'] = data['id'] 
+                error = None
                 return redirect(url_for('login'))
-            return render_template('login.html', error=error)
+            
     except Exception, e:
         error ="Identificacion no valida, intenta de nuevo "
-        return redirect(url_for('show_entries'))
+        flash(error)
+        return render_template('logon.html')
         # return render_template('login.html', error=error)
 
 def login_required(f):

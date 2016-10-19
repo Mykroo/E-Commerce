@@ -47,8 +47,13 @@ $(document).ready(function() {
 		aux.push({'id_prod':json[props[i]].name,'price':json[props[i]].price,'qty':json[props[i]].quantity}); 
 	}
 	$('#json').val(JSON.stringify(aux))
+	
+	$
 
 });
 var close_item_car=function(){
 	$(this).parent().fadeOut('slow', function(c){ });
+}
+var nueva_venta=function() {
+	localStorage.removeItem('simsimpleCart_items');
 }
