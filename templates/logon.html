@@ -1,31 +1,6 @@
 {% extends "main_header.html" %}
 {% block body %}
-<!-- <a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
-<div class="modal fade" id="modal-id">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Modal title</h4>
-			</div>
-			<div class="modal-body">
-				
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="account-in">
-	<ul class="nav nav-tabs">
-		<li role="presentation" class="active"><a href="#">Inicio de sesión</a></li>
-		<li role="presentation"><a href="#">Profile</a></li>
-		<li role="presentation"><a href="#">Messages</a></li>
-	</ul>
-	
-</div> -->
+
 <br><br>	
 <div class="container tab-container">
 		{% if not session.logged_in %}
@@ -78,35 +53,65 @@
 			</form>
 		</div>
 		{% else %}
-			<table class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Folio de compra</th>
-						<th>Fecha de compra</th>
-						<th>Datos de envio</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-		{% for e in sales %}
-					<tr>
-						<td> {{e.id}} </td>
-						<td> {{e.date}} </td>
-						<td> {{e.country+ ", "+e.mun +" "+e.calle+ " "+e.fracc+" "+ e.nume|string}} </td>
-						<td> <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> </td>
-					</tr>
-		{% else %}
-				</tbody>
-			</table>
-			<div class="well well-md">
-				<center>
-					<h1>No has comprado nada aún </h1>
-					<br>
-					<h1>¡¡¡Ha gastar se ha dicho!!!!</h1>
-				</center>
+
+		<div class="modal fade" id="venta_individual">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Detalles de compra</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
 			</div>
-		{% endfor %}
+		</div>
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Folio de compra</th>
+							<th>Fecha de compra</th>
+							<th>Datos de envio</th>
+							<th>Detalles de compra</th>
+						</tr>
+					</thead>
+					<tbody>
+			{% for e in sales %}
+						<tr>
+							<td> {{e.id}} </td>
+							<td> {{e.date}} </td>
+							<td> {{e.country+ ", "+e.mun +" "+e.calle+ " "+e.fracc+" "+ e.nume|string}} </td>
+							<td> <span class="glyphicon glyphicon-zoom-in view_venta" id="venta_{{e.id}} " aria-hidden="true" ></span> </td>
+						</tr>
+			{% else %}
+				<div class="well well-md">
+					<center>
+						<h1>No has comprado nada aún </h1>
+						<br>
+						<h1>¡¡¡Ha gastar se ha dicho!!!!</h1>
+					</center>
+				</div>
+			{% endfor %}
+					</tbody>
+				</table>
+			<div class="clearfix"> </div>
+
 		{% endif %}
-		<div class="clearfix"> </div>
 	</div>
 {% endblock %}

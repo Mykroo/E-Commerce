@@ -64,7 +64,7 @@ def close_db(error):
 def secret_page():
     if session.get('logged_in'):
         db= get_db()
-        c= db.execute('select * from shiping where id_usr= ?', [session['usr_id']])
+        c= db.execute('select * from shiping where id_usr= ? ', [session['usr_id']])
         sales = c.fetchall()
         return render_template('logon.html',sales=sales)
     else:
@@ -105,6 +105,30 @@ def checkout():
     else:
         return render_template("checkout.html")
     return ""
+
+@app.route('/get_details', methods = ['POST', 'GET'])
+def get_Detalis():
+    if request.method != 'POST':
+        return "no post"
+    else:
+        # return "no post"
+        try:
+            db = get_db()
+            cur = db.execute('select * from sales where id_ship = ?',[request.form['id_ship']])
+            details = cur.fetchall()
+            strinch="["
+            for k in details:
+                diction= dict(price=k['price'],total=k['total'],qty=k['qty'],   id_prod = k['id_prod'], id_ship = k['id_ship'] ) 
+                strinch+=json.dumps(diction)+','
+            strinch= strinch[0:len(strinch)-1] + "]"
+            # return json.jsonify(total=details[0]['total'],price=details[0]['price'], qty=details[0]['qty'] )
+            return strinch
+            # return Response(strinch,  mimetype='application/json')
+        except Exception, e:
+            return "oli"
+        
+
+
 
 @app.route('/ret_cart',methods=['POST','GET'])
 def ret_cart():

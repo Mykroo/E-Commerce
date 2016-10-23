@@ -18,8 +18,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="{{ url_for('static', filename='css/component.css') }}" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
-<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'> -->
+<link href='{{ url_for('static', filename='css/PT Sans Narrow.css') }}' rel='stylesheet' type='text/css'>
+<link href='{{ url_for('static', filename='css/Dorsa.css') }}' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <!-- start menu -->

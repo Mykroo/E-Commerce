@@ -48,7 +48,31 @@ $(document).ready(function() {
 	}
 	$('#json').val(JSON.stringify(aux))
 	
-	$
+	$('.view_venta').click(function(event) {
+		/* Act on the event */
+		var id=$(this).attr('id').replace("venta_", '');
+
+		// $.post()
+		// console.log(id);
+		$.post('/get_details', {id_ship: id}, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+			var json=JSON.parse(data);
+			
+			$('#venta_individual').find('tbody').html("")
+			for (var i = 0; i < json.length; i++) {
+				
+				$('#venta_individual').find('tbody').append(
+					'		<tr>'+
+					'			<td>'+json[i].id_prod+'</td>'+
+					'			<td>'+json[i].qty+'</td>'+
+					'			<td>'+json[i].price+'</td>'+
+					'			<td>'+json[i].total+'</td>'+
+					'		</tr>'
+					);
+			}
+		});
+		$('#venta_individual').modal('toggle');
+	});
 
 });
 var close_item_car=function(){

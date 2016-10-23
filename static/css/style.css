@@ -2813,3 +2813,13 @@ a.b-home {
 .flash > strong{
 	display: inline;
 }
+.view_venta{
+	margin-left: 40%;
+	color: grey;
+	font-size: 2em;
+}
+
+.view_venta:hover{
+	color: blue;
+	cursor: pointer;
+}
