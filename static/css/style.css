@@ -2823,3 +2823,9 @@ a.b-home {
 	color: blue;
 	cursor: pointer;
 }
+td>img{
+	height:100px;
+}
+.fila_venta{
+	cursor: pointer;
+}

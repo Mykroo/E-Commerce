@@ -85,21 +85,40 @@ def show_entries():
     return render_template("index.html")
     # return render_template('show_entries.html', entries=entries, users=users)
 
-@app.route('/men')
+@app.route('/men', methods=['GET', 'POST'])
 def men_store():
     db = get_db()
-    cur = db.execute('select * from products order by id desc')
-    entries= cur.fetchall()
-    cur = db.execute('select catego, count(catego) as count from products group by catego')
-    categorias=cur.fetchall()
-    return render_template("men.html", entries=entries, categos=categorias)
+    ranges = [(0,2500),
+                (2500,10000),
+                (10000,25000),
+                (5000,99999999)]
+    tot_range = []
+    for k in ranges:
+        tot_range += str(db.execute('select count(*) as n from products where price between ? and ?',k).fetchone()['n'])     
+    if request.method == 'POST':
+        categorias = db.execute('select catego, count(catego) as count from products group by catego').fetchall()
+
+        try:
+            entries = db.execute('select * from products where catego = ?', [request.form['catego']] ).fetchall()
+            return render_template("men.html", entries=entries, categos=categorias,ranges=tot_range)
+        except Exception, e:
+            # return "oli fallo"
+            entries = db.execute('select * from products p where name like ? or catego like ? or description like ?',["%"+request.form['search']+"%", "%"+request.form['search']+"%", "%"+request.form['search']+"%"] ).fetchall()
+            return render_template("men.html", entries=entries, categos=categorias,ranges=tot_range)
+    else:
+        db = get_db()
+        cur = db.execute('select * from products order by id desc')
+        entries= cur.fetchall()
+        cur = db.execute('select catego, count(catego) as count from products group by catego')
+        categorias=cur.fetchall()
+        return render_template("men.html", entries=entries, categos=categorias,ranges=tot_range)
 
 @app.route('/checkout.php', methods=['POST','GET'])
 def checkout():
     if request.method == 'POST':
         json_data = json.loads(request.form['json_data'])
         db = get_db()
-        cur = db.execute('select * from products order by id desc')
+        cur = db.execute('select * from products order by id desc  ')
         entries= cur.fetchall()
         return render_template("checkout.html", entries=entries)
     else:
@@ -114,11 +133,12 @@ def get_Detalis():
         # return "no post"
         try:
             db = get_db()
-            cur = db.execute('select * from sales where id_ship = ?',[request.form['id_ship']])
+            cur = db.execute('select s.id_ship, s.id_prod, p.name, p.img_file,  s.qty, s.price, s.total from sales s,products p where p.id=s.id_prod and s.id_ship=?',[request.form['id_ship']])
             details = cur.fetchall()
             strinch="["
             for k in details:
-                diction= dict(price=k['price'],total=k['total'],qty=k['qty'],   id_prod = k['id_prod'], id_ship = k['id_ship'] ) 
+                diction= dict(price=k['price'],total=k['total'],qty=k['qty'], id_prod = k['id_prod'], id_ship = k['id_ship'], img_file=k['img_file'] ) 
+                # diction= dict(price= 
                 strinch+=json.dumps(diction)+','
             strinch= strinch[0:len(strinch)-1] + "]"
             # return json.jsonify(total=details[0]['total'],price=details[0]['price'], qty=details[0]['qty'] )
@@ -274,7 +294,7 @@ def login():
                 session['name'] = data['name'] 
                 session['usr_id'] = data['id'] 
                 error = None
-                return redirect(url_for('login'))
+                return redirect(url_for('show_entries'))
             
     except Exception, e:
         error ="Identificacion no valida, intenta de nuevo "

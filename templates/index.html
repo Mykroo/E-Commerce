@@ -15,11 +15,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="{{ url_for('static',filename='css/style.css') }}" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
 <!--webfont-->
 <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'> -->
 <!-- <link href='http://fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'> -->
+<link href='{{ url_for('static', filename='css/PT Sans Narrow.css') }}' rel='stylesheet' type='text/css'>
+<link href='{{ url_for('static', filename='css/Dorsa.css') }}' rel='stylesheet' type='text/css'>
 <link href="{{ url_for('static', filename='css/style.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ url_for('static', filename='css/component.css') }}" rel='stylesheet' type='text/css' />
 <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-1.11.1.min.js') }}"></script>
@@ -30,6 +30,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="{{ url_for('static',filename='js/jquery.easydropdown.js') }}"></script>
 <script src="{{ url_for('static',filename='js/simpleCart.min.js') }}"> </script>
+<script src="{{ url_for('static', filename='js/script.js') }}"> </script>
 
 </head>
 <body>
@@ -83,7 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    <!-- start search-->
 				<div class="search-box">
 				   <div id="sb-search" class="sb-search">
-					  <form>
+					  <form action="/men" method="post">
 						 <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
 						 <input class="sb-search-submit" type="submit" value="">
 						 <span class="sb-icon-search"> </span>
@@ -120,15 +121,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</ul>	
 							</div>							
 						</div>
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Mujeres</h4>
-								<ul>
-									<li><a href="men">Relojes</a></li>
-									<li><a href="men">Accessories</a></li>
-								</ul>	
-							</div>							
-						</div>
+						
 						<div class="col2">
 							<div class="h_nav">
 								<h4>Tendencias</h4>

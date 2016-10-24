@@ -62,16 +62,25 @@ $(document).ready(function() {
 			for (var i = 0; i < json.length; i++) {
 				
 				$('#venta_individual').find('tbody').append(
-					'		<tr>'+
-					'			<td>'+json[i].id_prod+'</td>'+
+					'		<tr class="fila_venta">'+
+					'			<td hidden>'+json[i].id_prod+'</td>'+
+					'			<td><img src="static/images/'+json[i].img_file+'" alt="50px" /></td>'+
 					'			<td>'+json[i].qty+'</td>'+
-					'			<td>'+json[i].price+'</td>'+
-					'			<td>'+json[i].total+'</td>'+
+					'			<td>$'+json[i].price+'.00</td>'+
+					'			<td>$'+json[i].total+'.00</td>'+
 					'		</tr>'
 					);
 			}
 		});
 		$('#venta_individual').modal('toggle');
+	});
+	
+	$('.category_ref').click(function(event) {
+		// console.log($(this).find('a').html());	
+		var catego = $(this).find('a').html();
+		$('#catego_form').children('input').val(catego);
+		$('#catego_form').submit();
+
 	});
 
 });
