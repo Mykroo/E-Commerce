@@ -83,7 +83,9 @@ def show_entries():
     
     return render_template("index.html")
     # return render_template('show_entries.html', entries=entries, users=users)
-
+@app.route('/single')
+def single_item():
+    return render_template("single.html")
 @app.route('/men')
 def men_store():
     db = get_db()
