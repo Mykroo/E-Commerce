@@ -23,6 +23,9 @@ app.config.update(dict(
 	))
 app.config.from_envvar('FLASKR_SETTINGS', silent= True)
 
+if __name__ == '__main__':
+    app.run( host='192.168.1.72', port=80,debug=True)
+
 # *************   Database functions ***********************
 def init_db(): 
     db = get_db()
@@ -103,6 +106,12 @@ def men_store():
             return render_template("men.html", entries=entries, categos=categorias,ranges=tot_range)
         except Exception, e:
             # return "oli fallo"
+            if not session.get('logged_in'):
+                db.execute('insert into searches values ( ?, ? )', [999999,request.form['search']])
+                db.commit()
+            else:
+                db.execute('insert into searches values ( ?, ? )', [session['usr_id'],request.form['search']])
+                db.commit()
             entries = db.execute('select * from products p where name like ? or catego like ? or description like ?',["%"+request.form['search']+"%", "%"+request.form['search']+"%", "%"+request.form['search']+"%"] ).fetchall()
             return render_template("men.html", entries=entries, categos=categorias,ranges=tot_range)
     else:
@@ -226,6 +235,7 @@ def ret_cart():
         aux=aux[:len(aux)-1]+"]"
         return "str(aux)"
 
+
 @app.route('/sale', methods=['POST', 'GET'])
 def sale():
     if request.method== 'POST':
@@ -244,7 +254,7 @@ def sale():
                 flach='insert into sales (id_ship, id_prod, qty, price) values ('+str(id_ship)+', ' + str(item['id_prod'])+ ', ' +str(item['qty'])+ ', '+str(item['price'])+ ')'
                 db.execute(flach)
                 db.commit()
-            flash('New entry was successfully posted ')
+            flash('Compra realizada con exito')
         except Exception, e:
             flash('Bad data not uploaded')#insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', '+request.form['country']+', '+request.form['edo']+', '+request.form['mun']+', '+request.form['cp']+', '+request.form['fracc']+', '+request.form['calle']+', '+request.form['num']+','+request.form['tel']+')')
         return render_template('payment.html')
@@ -290,6 +300,8 @@ def login():
                 error = 'Invalid password'
                 return render_template('logon.html', error)
             else:
+                if data['admin'] == True:
+                    session['admin'] = True
                 session['logged_in'] = True
                 session['name'] = data['name'] 
                 session['usr_id'] = data['id'] 
@@ -301,6 +313,9 @@ def login():
         flash(error)
         return render_template('logon.html')
         # return render_template('login.html', error=error)
+@app.route('/contacto')
+def contact():
+    return render_template('contact.html')
 
 def login_required(f):
     @wraps(f)
@@ -310,8 +325,17 @@ def login_required(f):
         else:
             flash("Necesitas iniciar sesion")
             return redirect(url_for('secret_page'))
-        
     return wrap
+
+def admin_required(f):
+    @wraps(f)
+    def admin_wrap(*args, **kwargs):
+        if 'logged_in' in session and session['admin'] == True:
+            return f(*args, **kwargs)
+        else:
+            flash("Necesitas permisos de administrador")
+            return redirect(url_for('men_store'))
+    return admin_wrap
 
 @app.route('/logout/')
 @login_required
@@ -324,7 +348,11 @@ def logout():
 @login_required
 def payment():
     return render_template("payment.html")
-    
+
+@app.route('/admin')
+@admin_required
+def dashboards():
+    return render_template("dash.html")
 
 # views secc: http://flask.pocoo.org/docs/0.11/tutorial/templates/#tutorial-templates
 # *************   END View functions ***********************

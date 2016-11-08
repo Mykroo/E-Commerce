@@ -47,3 +47,13 @@ CREATE TABLE sales (
         id_prod
     )
 );
+
+CREATE TABLE searches (
+    id_usr   INTEGER NOT NULL,
+    key_word TEXT,
+    PRIMARY KEY (
+          id_usr,
+          key_word
+      )
+);
+

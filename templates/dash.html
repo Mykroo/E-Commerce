@@ -1,0 +1,28 @@
+{% extends "main_header.html" %}
+{% block body %}
+<script>
+	
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename='am/amcharts.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/serial.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/funnel.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/gantt.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/gauge.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/pie.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/radar.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/xy.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='am/plugins/export/export.min.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='am/plugins/export/export.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<div class="container-fluid" style="background-color:grey">
+
+	<div class="container">
+		<div class="col-sm-12" id="topVentas" style="height: 600px; background-color:grey;"></div>
+		<div class="col-sm-12" id="ventasMensuales" style="height: 600px; background-color:grey;"></div>
+		<div class="col-sm-6" id="ganancias" style="height: 600px; width: 50%; background-color:grey;"></div>
+		<div class="col-sm-6" id="regiones" style="height: 600px; background-color:grey;"></div>
+	</div>
+</div>
+
+{% endblock%}

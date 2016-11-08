@@ -59,8 +59,9 @@ $(document).ready(function() {
 			var json=JSON.parse(data);
 			
 			$('#venta_individual').find('tbody').html("")
+			
 			for (var i = 0; i < json.length; i++) {
-				
+				1
 				$('#venta_individual').find('tbody').append(
 					'		<tr class="fila_venta">'+
 					'			<td hidden>'+json[i].id_prod+'</td>'+

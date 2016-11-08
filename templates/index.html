@@ -58,13 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	          <div class="clearfix"> </div>
 	       </div>
            <div class="header_top_right">
-		  	 <div class="lang_list">
-				<select tabindex="4" class="dropdown">
-					<option value="" class="label" value="">$ Pesos </option>
-					<option value="1">Dollar</option>
-					<option value="2">Euro</option>
-				</select>
-			 </div>
+		  	 
 			 <ul class="header_user_info">
 			  {% if session.logged_in %}
 			  <a class="login" href="/logon.aspx">
@@ -108,67 +102,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	   </div>
    	   <div class="menu">
 	     <ul class="megamenu skyblue">
-			<li><a class="color2" href="#">Hombres</a>
-				<div class="megapanel">
-					<div class="row">
-						<div class="col1">
-							<div class="h_nav">
-								<h4>Hombres</h4>
-								<ul>
-									<li><a href="men">Relojes</a></li>
-									<li><a href="men">Relojes</a></li>
-									<li><a href="men">Accessories</a></li>
-								</ul>	
-							</div>							
-						</div>
-						
-						<div class="col2">
-							<div class="h_nav">
-								<h4>Tendencias</h4>
-								<ul>
-									<li class>
-										<div class="p_left">
-										  <img src="{{ url_for('static',filename='images/p1.jpg') }}" class="img-responsive" alt=""/>
-										</div>
-										<div class="p_right">
-											<h4><a href="#">Denim shirt</a></h4>
-											<span class="item-cat"><small><a href="#">Relojes</a></small></span>
-											<span class="price">29.99 $</span>
-										</div>
-										<div class="clearfix"> </div>
-									</li>
-									<li>
-										<div class="p_left">
-										  <img src="{{ url_for('static',filename='images/p2.jpg') }}" class="img-responsive" alt=""/>
-										</div>
-										<div class="p_right">
-											<h4><a href="#">Denim shirt</a></h4>
-											<span class="item-cat"><small><a href="#">Relojes</a></small></span>
-											<span class="price">29.99 $</span>
-										</div>
-										<div class="clearfix"> </div>
-									</li>
-									<li>
-										<div class="p_left">
-										  <img src="{{ url_for('static',filename='images/p3.jpg') }}" class="img-responsive" alt=""/>
-										</div>
-										<div class="p_right">
-											<h4><a href="#">Denim shirt</a></h4>
-											<span class="item-cat"><small><a href="#">Relojes</a></small></span>
-											<span class="price">29.99 $</span>
-										</div>
-										<div class="clearfix"> </div>
-									</li>
-								</ul>	
-							</div>												
-						</div>
-					  </div>
-					</div>
+			<li><a class="color2" href="/men">Hombres</a>
+				
 			</li>
 			<li><a class="color4" href="#">			
-				<li><a class="color10" href="brands.html">Contacto</a></li>
+				<li><a class="color10" href="/contacto">Contacto</a></li>
 				<li class="active grid"><a class="color3" href="/">Ventas</a></li>
-				<li><a class="color7" href="404.html">No fund</a></li>
 				<div class="clearfix"> </div>
 			</ul>
 			</div>
@@ -179,8 +118,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    <div class="main">
     <div class="container">
     	<ul class="content-home">
-           <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
+           <li class="col-sm-4 col-sm-offset-2">
+              <!-- <a href="/men" class="item-link" title=""> -->
+              	<form action="/men" method="post">
+              		<input type="submit" hidden="" value="">
+              	</form>
                 <div class="bannerBox">
                    <img src="{{ url_for('static',filename='images/w1.jpg') }}" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
@@ -192,25 +134,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </a>
            </li>
            <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
-                <div class="bannerBox">
-                   <img src="{{ url_for('static',filename='images/w3.jpg') }}" class="item-img" title="" alt="" width="100%" height="100%">
-                   <div class="item-html">
-                      <h3>Hombres <span>Relojes</span></h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                      <button>Comprar ahora!</button>
-                   </div>
-                </div>
-              </a>
-           </li>
-           <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
+              <a href="/men" class="item-link" title="">
                 <div class="bannerBox">
                    <img src="{{ url_for('static',filename='images/w2.jpg') }}" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
                       <h3>Deportivos<span>Relojes</span></h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                      <button>Comprar ahora!</button>
+                      <p>Los mejores relojes de moda </p>
+                      <button>Comprar!</button>
                    </div>
                 </div>
               </a>
@@ -219,11 +149,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
        </ul>
     </div>
     <div class="middle_content">
-    	<div class="container">
+    	<!-- <div class="container">
     		<h2>Historia
     		</h2>
     		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste repellat, numquam vitae rerum impedit! Facilis doloribus optio incidunt porro dolore, soluta libero tempore voluptates! Quia minima quis sequi ipsa adipisci.</p>
-    	</div>
+    	</div> -->
     </div>
    	<div class="content_middle_bottom">
    		<div class="header-left" id="home">
@@ -295,21 +225,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    </div>
    <div class="footer">
    	 <div class="container">
-   	 	<div class="newsletter">
+   	 	<!-- <div class="newsletter">
 			<h3>Newsletter</h3>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
 			<form>
 			  <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
 			  <input type="submit" value="SUBSCRIBE">
 			</form>
-		</div>
+		</div> -->
    		<div class="cssmenu">
 		   <ul>
 			<li class="active"><a href="#">Privacy</a></li>
 			<li><a href="#">Terminos</a></li>
 			<li><a href="#">Tienda</a></li>
 			<li><a href="#">Acerca de</a></li>
-			<li><a href="contact.html">Contacto</a></li>
+			<li><a href="/contacto">Contacto</a></li>
 		  </ul>
 		</div>
 		<ul class="social">
