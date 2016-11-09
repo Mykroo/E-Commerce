@@ -52,7 +52,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    	  	<div class="header_top">
    	  	   <div class="header_top_left">
 	  	      <div class="box_11"><a href="checkout.php">
-		      <h4><p>Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</p><img src="{{ url_for('static',filename='images/bag.png') }}" alt=""/><div class="clearfix"> </div></h4>
+		      <h4><p>Carrito: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</p><img src="{{ url_for('static', filename='images/bag.png') }}" alt=""/><div class="clearfix"> </div></h4>
 		      </a></div>
 	          <p class="empty"><a href="javascript:;" class="simpleCart_empty">Vaciar carrito</a></p>
 	          <div class="clearfix"> </div>
@@ -102,12 +102,89 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	   </div>
    	   <div class="menu">
 	     <ul class="megamenu skyblue">
-			<li><a class="color2" href="/men">Hombres</a>
-				
+	     	{% if session.admin %}
+			<li><a href="/admin">Administración</a>
+
 			</li>
+			{%endif%}
+			<li class="grid"><a class="color2" href="#">Hombres</a>
+				<div class="megapanel">
+					<div class="row">
+						<div class="col1">
+							<div class="h_nav">
+								<h4>Men</h4>
+								<ul>
+									<li><a href="/men">Relojes</a></li>
+									<li><a href="/men">Relojes inteligentes</a></li>
+									<li><a href="/men">Blazers</a></li>
+									<li><a href="/men">Suits</a></li>
+									<li><a href="/men">Trousers</a></li>
+								</ul>	
+							</div>							
+						</div>
+						<form action="/men" method="post" hidden="" id="catego_form"><input type="text" name="catego"></form>
+						<!-- <div class="col1"> -->
+							<!-- <div class="h_nav"> -->
+								<!-- <h4>Deportes</h4> -->
+								<!-- <ul> -->
+									<!-- <li><a href="/men">Relojes</a></li> -->
+									<!-- <li><a href="/men">Outerwear</a></li> -->
+									<!-- <li><a href="/men">Deportivos</a></li> -->
+									<!-- <li><a href="/men">Handbags</a></li> -->
+									<!-- <li><a href="/men">Trousers</a></li> -->
+									<!-- <li><a href="/men">Jeans</a></li> -->
+								<!-- </ul>	 -->
+							<!-- </div>							 -->
+						<!-- </div> -->
+						<div class="col2">
+							<div class="h_nav">
+								<h4>Trends</h4>
+								<ul>
+									<li class>
+										<div class="p_left">
+										  <img src="{{ url_for('static', filename='images/p1.jpg') }}" class="img-responsive" alt=""/>
+										</div>
+										<div class="p_right">
+											<h4><a href="#">Smartwatch </a></h4>
+											<span class="item-cat"><small><a href="#">Relojes</a></small></span>
+											<span class="price">29.99 $</span>
+										</div>
+										<div class="clearfix"> </div>
+									</li>
+									<li>
+										<div class="p_left">
+										  <img src="{{ url_for('static', filename='images/p2.jpg') }}" class="img-responsive" alt=""/>
+										</div>
+										<div class="p_right">
+											<h4><a href="#">Smartwatch </a></h4>
+											<span class="item-cat"><small><a href="#">Relojes</a></small></span>
+											<span class="price">29.99 $</span>
+										</div>
+										<div class="clearfix"> </div>
+									</li>
+									<li>
+										<div class="p_left">
+										  <img src="{{ url_for('static', filename='images/p3.jpg') }}" class="img-responsive" alt=""/>
+										</div>
+										<div class="p_right">
+											<h4><a href="#">Smartwatch </a></h4>
+											<span class="item-cat"><small><a href="#">Relojes</a></small></span>
+											<span class="price">29.99 $</span>
+										</div>
+										<div class="clearfix"> </div>
+									</li>
+								</ul>	
+							</div>												
+						</div>
+					  </div>
+					</div>
+			</li>
+			</li>
+			<!-- <li><a class="color10" href="brands.html">Marcas</a></li> -->
+				<li><a class="color3" href="/">Nosotros</a></li>
 			<li><a class="color4" href="#">			
 				<li><a class="color10" href="/contacto">Contacto</a></li>
-				<li class="active grid"><a class="color3" href="/">Ventas</a></li>
+				
 				<div class="clearfix"> </div>
 			</ul>
 			</div>
@@ -126,8 +203,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="bannerBox">
                    <img src="{{ url_for('static',filename='images/w1.jpg') }}" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
-                      <h3>Hombres<span>Relojes</span></h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                      <h3>Hombres<span>Formales</span></h3>
+                      <p>Nada como el estilo y la perfección de la alta calidad</p>
                       <button>Comprar!</button>
                    </div>
                 </div>
@@ -138,7 +215,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="bannerBox">
                    <img src="{{ url_for('static',filename='images/w2.jpg') }}" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
-                      <h3>Deportivos<span>Relojes</span></h3>
+                      <h3>Deportivos<span>Deportivos</span></h3>
                       <p>Los mejores relojes de moda </p>
                       <button>Comprar!</button>
                    </div>

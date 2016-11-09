@@ -159,7 +159,7 @@ def get_Detalis():
         except Exception, e:
             return "oli"
         
-@app.route('/contact.html')
+@app.route('/contacto')
 def contacto():
     return render_template("contact.html")
 
@@ -390,7 +390,7 @@ def ventas_edos(methods = ['POST', 'GET']):
 
 
 @app.route('/admin')
-@admin_required
+# @admin_required
 def dashboards():
     return render_template("dash.html")
 

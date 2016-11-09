@@ -8,11 +8,11 @@
 			<form action="{{ url_for('login') }}" method=post>
 				<div> 	
 					<span>Email*</span>
-					<input type="text" name="username"> 
+					<input placeholder="Enter email@mail.com.." type="text" name="username"> 
 				</div>
 				<div> 
 					<span class="pass">Password*</span>
-					<input type="password" name="password">
+					<input placeholder="Insert your password" type="password" name="password">
 				</div>				
 				<input type="submit" value="Login"> 
 			</form>
@@ -43,11 +43,15 @@
 				</div>
 				<div> 	
 					<span>Email*</span>
-					<input type="text" name=mail> 
+					<input placeholder="Enter email@mail.com.." type="text" name=mail> 
 				</div>
 				<div> 
 					<span class="pass">Password*</span>
-					<input type="password" name=password>
+					<input placeholder="Insert your password" type="password" name=password>
+				</div>
+				<div> 
+					<span class="pass">Confirm Password*</span>
+					<input placeholder="Confirm your password" type="password" name=conf_password>
 				</div>				
 				<input type="submit" value="Registrarse"> 
 			</form>
