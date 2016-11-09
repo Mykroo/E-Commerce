@@ -156,7 +156,13 @@ def get_Detalis():
         except Exception, e:
             return "oli"
         
+@app.route('/contact.html')
+def contacto():
+    return render_template("contact.html")
 
+@app.route('/single.html')
+def single():
+    return render_template("single.html")
 
 
 @app.route('/ret_cart',methods=['POST','GET'])
@@ -348,6 +354,37 @@ def logout():
 @login_required
 def payment():
     return render_template("payment.html")
+
+@app.route('/topVentas')
+def top_ventas(methods = ['POST', 'GET']):
+    db = get_db()
+    cur = db.execute('select count(s.id_prod) as qty, p.name, "#"||hex(randomblob(1))||hex(randomblob(1))||hex(randomblob(1)) as color from sales s,products p where s.id_prod = p.id group by s.id_prod limit 10')
+    data = cur.fetchall()
+    json_str="["
+
+    for fila in data:
+        json_str += "{"
+        json_str += '"visits":' + str(fila['qty'])+ ','+'"country":"' + fila['name'] + '",'+'"color":"' + fila['color']+ '"'
+        json_str += "},"
+    json_str = json_str[:len(json_str)-1]+ "]"
+    return json_str
+
+@app.route('/ventas_edos')
+def ventas_edos(methods = ['POST', 'GET']):
+    db = get_db()
+    cur = db.execute('select edo, round(cast(count() as float)*100/(select count() from shiping), 2) as percent from shiping group by edo')
+    data = cur.fetchall()
+    json_str="["
+    for fila in data:
+        json_str += "{"
+        json_str += '"estado":"' + str(fila['edo'])+ '",'+'"value":' + str(fila['percent'])
+        json_str += "},"
+    json_str = json_str[:len(json_str)-1]+ "]"
+    return json_str
+
+
+    
+
 
 @app.route('/admin')
 @admin_required

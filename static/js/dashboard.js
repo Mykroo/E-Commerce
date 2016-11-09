@@ -1,100 +1,50 @@
-var topVentas = AmCharts.makeChart("topVentas", {
-    "theme": "patterns",
-    "type": "serial",
-    "startDuration": 3,
-    "dataProvider": [{
-        "country": "USA",
-        "visits": 2025,
-        "color": "#FF0F00"
-    }, {
-        "country": "China",
-        "visits": 1882,
-        "color": "#FF6600"
-    }, {
-        "country": "Japan",
-        "visits": 1809,
-        "color": "#FF9E01"
-    }, {
-        "country": "Germany",
-        "visits": 1322,
-        "color": "#FCD202"
-    }, {
-        "country": "UK",
-        "visits": 1122,
-        "color": "#F8FF01"
-    }, {
-        "country": "France",
-        "visits": 1114,
-        "color": "#B0DE09"
-    }, {
-        "country": "India",
-        "visits": 984,
-        "color": "#04D215"
-    }, {
-        "country": "Spain",
-        "visits": 711,
-        "color": "#0D8ECF"
-    }, {
-        "country": "Netherlands",
-        "visits": 665,
-        "color": "#0D52D1"
-    }, {
-        "country": "Russia",
-        "visits": 580,
-        "color": "#2A0CD0"
-    }, {
-        "country": "South Korea",
-        "visits": 443,
-        "color": "#8A0CCF"
-    }, {
-        "country": "Canada",
-        "visits": 441,
-        "color": "#CD0D74"
-    }, {
-        "country": "Brazil",
-        "visits": 395,
-        "color": "#754DEB"
-    }, {
-        "country": "Italy",
-        "visits": 386,
-        "color": "#DDDDDD"
-    }, {
-        "country": "Taiwan",
-        "visits": 338,
-        "color": "#333333"
-    }],
-    "valueAxes": [{
-        "position": "left",
-        "axisAlpha":0,
-        "gridAlpha":0
-    }],
-    "graphs": [{
-        "balloonText": "[[category]]: <b>[[value]]</b>",
-        "colorField": "color",
-        "fillAlphas": 0.85,
-        "lineAlpha": 0.1,
-        "type": "column",
-        "topRadius":0.1,
-        "valueField": "visits"
-    }],
-    "depth3D": 40,
-	"angle": 40,
-    "chartCursor": {
-        "categoryBalloonEnabled": false,
-        "cursorAlpha": 0,
-        "zoomable": false
-    },
-    "categoryField": "country",
-    "categoryAxis": {
-        "gridPosition": "start",
-        "axisAlpha":0,
-        "gridAlpha":0
 
-    },
-    "export": {
-    	"enabled": true
-     }
-}, 0);
+$.get('/topVentas', function(data, textStatus, xhr) {
+    /*optional stuff to do after success */
+    topVentasDat = [{"country": "USA","visits": 2025,"color": "#FF0F00"}, {"country": "China","visits": 1882,"color": "#FF6600"}, {"country": "Japan","visits": 1809,"color": "#FF9E01"}, {"country": "Germany","visits": 1322,"color": "#FCD202"}, {"country": "UK","visits": 1122,"color": "#F8FF01"}, {"country": "France","visits": 1114,"color": "#B0DE09"}, {"country": "India","visits": 984,"color": "#04D215"}, {"country": "Spain","visits": 711,"color": "#0D8ECF"}, {"country": "Netherlands","visits": 665,"color": "#0D52D1"}, {"country": "Russia","visits": 580,"color": "#2A0CD0"}, {"country": "South Korea","visits": 443,"color": "#8A0CCF"}, {"country": "Canada","visits": 441,"color": "#CD0D74"}, {"country": "Brazil","visits": 395,"color": "#754DEB"}, {"country": "Italy","visits": 386,"color": "#DDDDDD"}, {"country": "Taiwan","visits": 338,"color": "#333333"}]
+    console.log(topVentasDat)
+    console.log("**********************")
+
+    topVentasDat = JSON.parse(data)
+    console.log(topVentasDat)
+    var topVentas = AmCharts.makeChart("topVentas", {
+        "theme": "patterns",
+        "type": "serial",
+        "startDuration": 3,
+        "dataProvider": topVentasDat,
+        "valueAxes": [{
+            "position": "left",
+            "axisAlpha":0,
+            "gridAlpha":0
+        }],
+        "graphs": [{
+            "balloonText": "[[category]]: <b>[[value]]</b>",
+            "colorField": "color",
+            "fillAlphas": 0.85,
+            "lineAlpha": 0.1,
+            "type": "column",
+            "topRadius":1,
+            "valueField": "visits"
+        }],
+        "depth3D": 40,
+        "angle": 40,
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "country",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha":0,
+            "gridAlpha":0
+
+        },
+        "export": {
+            "enabled": true
+        }
+    }, 0);
+});
 //******************************************top Ventas **********************************************
 var chartData = generateChartData();
 var ventasMensuales = AmCharts.makeChart("ventasMensuales", {
@@ -131,17 +81,17 @@ var ventasMensuales = AmCharts.makeChart("ventasMensuales", {
     },
     "chartCursor": {
        "limitToGraph":"g1"
-    },
-    "categoryField": "date",
-    "categoryAxis": {
-        "parseDates": true,
-        "axisColor": "#DADADA",
-        "dashLength": 1,
-        "minorGridEnabled": true
-    },
-    "export": {
-        "enabled": true
-    }
+   },
+   "categoryField": "date",
+   "categoryAxis": {
+    "parseDates": true,
+    "axisColor": "#DADADA",
+    "dashLength": 1,
+    "minorGridEnabled": true
+},
+"export": {
+    "enabled": true
+}
 });
 ventasMensuales.addListener("rendered", zoomChart);
 zoomChart();
@@ -200,21 +150,21 @@ var ganancias = AmCharts.makeChart("ganancias", {
       "radius": "170%",
       "gradientRatio": [0.5, 0, -0.5],
       "startValue": 0
-    }, {
+  }, {
       "color": "#3cd3a3",
       "endValue": 0,
       "innerRadius": "105%",
       "radius": "170%",
       "gradientRatio": [0.5, 0, -0.5],
       "startValue": 0
-    }]
-  }],
-  "arrows": [{
+  }]
+}],
+"arrows": [{
     "alpha": 1,
     "innerRadius": "35%",
     "nailRadius": 0,
     "radius": "170%"
-  }]
+}]
 });
 setInterval(randomValue, 2000);
 // set random value
@@ -226,37 +176,24 @@ function randomValue() {
   ganancias.axes[0].bands[1].setEndValue(value);
 }
 //***************************** ganancias ********************************************
-var chart = AmCharts.makeChart( "regiones", {
-  "type": "pie",
-  "theme": "dark",
-  "dataProvider": [ {
-    "country": "Aguascalientes",
-    "value": 260
-  }, {
-    "country": "México",
-    "value": 201
-  }, {
-    "country": "Durango",
-    "value": 65
-  }, {
-    "country": "Guanajuato",
-    "value": 39
-  }, {
-    "country": "Nuevo Leon",
-    "value": 19
-  }, {
-    "country": "Jalisco",
-    "value": 10
-  } ],
-  "valueField": "value",
-  "titleField": "country",
-  "outlineAlpha": 0.4,
-  "depth3D": 15,
-  "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
-  "angle": 30,
-  "export": {
-    "enabled": true
-  }
+$.get('/ventas_edos', function(data) {
+    //pieData = [ {"estado": "Aguascalientes","value": 260}, {"estado": "México","value": 201}, {"estado": "Durango","value": 65}, {"estado": "Guanajuato","value": 39}, {"estado": "Nuevo Leon","value": 19}, {"estado": "Jalisco","value": 10} ]
+    pieData = JSON.parse(data);
+    var chart = AmCharts.makeChart( "regiones", {
+      "type": "pie",
+      "theme": "dark",
+      "dataProvider": pieData,
+    "valueField": "value",
+    "titleField": "estado",
+    "outlineAlpha": 0.4,
+    "depth3D": 25,
+    "innerRadius": 80,
+    "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+    "angle": 50,
+    "export": {
+        "enabled": true
+    }
 } );
 
+});
 //***************************** ganancias ********************************************
