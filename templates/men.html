@@ -71,7 +71,7 @@
 					<ul>
 					{% for entry in entries|sort(attribute='price') %}
   					  	<li class="last simpleCart_shelfItem">
-							<a class="cbp-vm-image" href="/single">
+							<a class="cbp-vm-image" href="#" onclick="single($(this))">
 								<div class="view view-first">
 					   		  <div class="inner_content clearfix">
 								<div class="product_image">
@@ -84,8 +84,15 @@
 									   <h4>{{entry.name}}</h4>
 									   <p> {{entry.catego}}</p>
 									    <div class="price mount item_price">${{entry.price}}</div>
-									    <a class="button item_add cbp-vm-icon cbp-vm-add" href="#">Agregar al carrito</a>
-									 </div>		
+									    <center>
+									    	<a class="button item_add cbp-vm-icon cbp-vm-add" href="#">Agregar al carrito</a>
+									    </center>
+									 </div>	
+									 <div id="qty-line">
+									    	<button class="btn btn-info qty-plus"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+									    	<strong><span class="item_Quantity" style="display:float-left; font-size:1.3em;">1</span></strong>
+									    	<button class="btn btn- btn-info qty-min"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+									    </div>	
 								  </div>
 			                     </div>
 		                      </div>

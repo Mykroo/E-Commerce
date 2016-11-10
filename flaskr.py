@@ -87,9 +87,12 @@ def show_entries():
     
     return render_template("index.html")
     # return render_template('show_entries.html', entries=entries, users=users)
-@app.route('/single')
+@app.route('/single', methods=['GET', 'POST'])
 def single_item():
-    return render_template("single.html")
+    db= get_db()
+    c= db.execute('select * from products where id = ? ', [request.form['id']])
+    prod = c.fetchone()
+    return render_template("single.html", prod = prod)
     
 @app.route('/men', methods=['GET', 'POST'])
 def men_store():
@@ -188,22 +191,13 @@ def ret_cart():
         for  row in res:
             
             aux+='<div class="cart-header2" id="itemCart_'+str(i)+'">\n'\
-            ' <div class="close2" onclick=" '\
-            '   $(this).parent().fadeOut(\'slow\', function(c){{\n'\
-            '       json_cart=JSON.parse(localStorage.simpleCart_items);\n'   \
-            '       props = Object.getOwnPropertyNames ( json_cart )\n'   \
-            '       delete json_cart[props['+str(i)+']]\n'   \
-            '       localStorage.simpleCart_items=JSON.stringify(json_cart)\n'   \
-            '       window.location.reload()\n'   \
-            '                                                                \n'   \
-            '                                                                \n'   \
-            '   }});"> </div>\n'\
+            ' <div class="close2" onclick="cerrar($(this))"> </div>\n'\
             '  <div class="cart-sec simpleCart_shelfItem">\n'\
             '        <div class="cart-item cyc">\n'\
             '             <img src="/static/images/'+str(row[3])+'" class="img-responsive" alt="">\n'\
             '        </div>\n'\
             '       <div class="cart-item-info">\n'\
-            '        <h3><a href="#">'+str(row[1])+'</a><span>Modelo #: '+str(row[0])+'</span></h3>\n'\
+            '        <h3><a href="#">'+str(row[1])+'</a><span class="mod-id" >Modelo #:'+str(row[0])+'</span></h3>\n'\
             '        <ul class="qty">\n'\
             '            <li><p>Precio : $'+str(row[4])+'.00</p></li>\n'\
             '            <li><p>Cantidad Restante: '+str(row[6])+' </p></li>\n'\

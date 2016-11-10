@@ -4,8 +4,43 @@
 // for (var i = 0; i < props.length; i++) {
 // 	console.log( json_cart[props[i]]);
 // }
-
+var eeste;
+var single= function(este){
+	eeste =este;
+	id = este.parent().find('.item_name').html()
+	$('#single_form input').val(id);
+	$('#single_form').submit();
+	console.log(id);
+}
+var single2 = function(id){
+	$('#single_form input').val(id);
+	$('#single_form').submit();
+	console.log(id);
+}
+var cerrar=function(este) {
+		/* Act on the event */
+		este= este.parents('.cart-header2')
+		json_cart=JSON.parse(localStorage.simpleCart_items);
+		props = Object.getOwnPropertyNames ( json_cart )
+		console.log(este)
+		mod_id=este.find(".mod-id").html().split(":")[1]
+		for (var i = 0; i < props.length; i++) {
+			if (json_cart[props[i]].name === mod_id) {
+				delete json_cart[props[i]];
+			}
+		}
+			// delete json_cart[props[1]]
+		localStorage.simpleCart_items=JSON.stringify(json_cart)
+		window.location.reload()
+		este.parent().fadeOut('slow');
+	};
+// $('.cbp-vm-image').click(function(){
+	// $('#single_form input').val(25);
+	// $('#single_form').submit();
+	// console.log(12)
+// });
 str=''
+var quant;
 $(document).ready(function() {
 	var ids=Array();
 	var qty=Array();
@@ -16,14 +51,27 @@ $(document).ready(function() {
 		ids[i]= json_cart[props[i]].name;
 		qty[i]= json_cart[props[i]].quantity;
 	}
+	$('#btn-pagar').click(function(event) {
+		/* Act on the event */
+		$('#form_pay').submit();
 
+	});
+	$('.qty-min').click(function(event) {
+		quant=$(this).parent().find('.item_Quantity').html()-1;
+		if(quant >0)
+			$(this).parent().find('.item_Quantity').html(quant);
+	});
+	$('.qty-plus').click(function(event) {
+		quant=parseInt($(this).parent().find('.item_Quantity').html())+1;
+		$(this).parent().find('.item_Quantity').html(quant);
+	});
 	if (ids !== undefined ) {
-		console.log("no undefined")
+		//console.log("no undefined")
 		$('#ids').val(ids)
 		$('#qty').val(qty)
 		
 	}else{
-		console.log("undefined")
+		//console.log("undefined")
 	}
 
 	$.post('/ret_cart', {ids: ids.toString() ,qty:qty.toString()}, function(data, textStatus, xhr) {

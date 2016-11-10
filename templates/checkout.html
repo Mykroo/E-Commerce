@@ -94,12 +94,7 @@
    </div>
    <script>
    	$(function() {
-   		$('.close2').on('click', function(c){
-			// c.remove()
-			console.log("oli");
-			// $('.cart-header2').fadeOut('slow', function(c){
-			$(this).parent().fadeOut("slow", function(c){});
-		});		
+   			
 		json_cart=JSON.parse(localStorage.simpleCart_items);
 		props = Object.getOwnPropertyNames ( json_cart )
 		var tot=0;

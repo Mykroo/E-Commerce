@@ -8,6 +8,7 @@ $.get('/topVentas', function(data, textStatus, xhr) {
     topVentasDat = JSON.parse(data)
     console.log(topVentasDat)
     var topVentas = AmCharts.makeChart("topVentas", {
+        "language":"es",
         "theme": "patterns",
         "type": "serial",
         "startDuration": 3,
@@ -41,7 +42,8 @@ $.get('/topVentas', function(data, textStatus, xhr) {
 
         },
         "export": {
-            "enabled": true
+            "enabled": true,
+            "language": "es"
         }
     }, 0);
 });
@@ -49,6 +51,7 @@ $.get('/topVentas', function(data, textStatus, xhr) {
 var chartData = generateChartData();
 var ventasMensuales = AmCharts.makeChart("ventasMensuales", {
     "type": "serial",
+    "language":"es",
     "theme": "dark",
     "marginRight": 80,
     "autoMarginOffset": 20,
@@ -90,7 +93,22 @@ var ventasMensuales = AmCharts.makeChart("ventasMensuales", {
     "minorGridEnabled": true
 },
 "export": {
-    "enabled": true
+    "enabled": true,
+    "menu": [ {
+      "class": "export-main",
+      "menu": [ {
+        "label": "Descargar",
+        "menu": [ "PNG", "JPG", "CSV" ]
+      }, {
+        "label": "Anotaciones",
+        "action": "draw",
+        "menu": [ {
+          "class": "export-drawing",
+          "menu": [ "PNG", "JPG" ]
+        } ]
+      } ]
+    } ]
+
 }
 });
 ventasMensuales.addListener("rendered", zoomChart);
@@ -126,6 +144,7 @@ function generateChartData() {
 //***************************** mensuales********************************************
 
 var ganancias = AmCharts.makeChart("ganancias", {
+  "language":"es",
   "theme": "dark",
   "type": "gauge",
   "axes": [{
@@ -181,6 +200,7 @@ $.get('/ventas_edos', function(data) {
     pieData = JSON.parse(data);
     var chart = AmCharts.makeChart( "regiones", {
       "type": "pie",
+      "language":"es",
       "theme": "dark",
       "dataProvider": pieData,
     "valueField": "value",
