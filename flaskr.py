@@ -244,10 +244,15 @@ def sale():
     if request.method== 'POST':
         try:
             db = get_db()
-            session['usr_id']
-
-            db.execute('insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', ?, ?, ?, ?, ?, ?, ?, ?)',
-                         [request.form['country'], request.form['edo'], request.form['mun'], request.form['cp'], request.form['fracc'], request.form['calle'], request.form['num'], request.form['tel'] ])
+            # session['usr_id']
+            db.execute('insert into shiping ( '\
+                'id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values '\
+                +'(?, ?, ?, ?, ?, ?, ?, ?, ?)', [str(session['usr_id']),
+                str(request.form['country']), str(request.form['edo']), str(request.form['mun']),str(request.form['cp']),
+                 str(request.form['fracc']),str(request.form['calle']),str(request.form['num']), str(request.form['tel'])])
+                    # [str(session['usr_id']),str(request.form['country']), str(request.form['edo']),
+                    #  str(request.form['mun']),str(request.form['cp']), str(request.form['fracc']),
+                    #  str(request.form['calle']),str(request.form['num']), str(request.form['tel'])])
             db.commit()
             
             id_ship = db.execute('select max(id) from shiping').fetchone()[0]
@@ -257,10 +262,16 @@ def sale():
                 flach='insert into sales (id_ship, id_prod, qty, price) values ('+str(id_ship)+', ' + str(item['id_prod'])+ ', ' +str(item['qty'])+ ', '+str(item['price'])+ ')'
                 db.execute(flach)
                 db.commit()
-            flash('Compra realizada con exito')
+            flash('<div class="flash alert alert-success fade in">\n'\
+                '<a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>\n'\
+                '<strong>Compra realizada con exito</strong></div>')
+            # flash('Compra realizada con exito')
         except Exception, e:
-            flash('Bad data not uploaded')#insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', '+request.form['country']+', '+request.form['edo']+', '+request.form['mun']+', '+request.form['cp']+', '+request.form['fracc']+', '+request.form['calle']+', '+request.form['num']+','+request.form['tel']+')')
-        return render_template('payment.html')
+            flash('<div class="flash alert alert-danger fade in">\n'\
+                '<a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>\n'\
+                '<strong>Bad data not uploaded</strong></div>')
+            #insert into shiping ( id_usr, country, edo, mun, cp, fracc, calle, nume, tel) values ('+str(session['usr_id'])+', '+request.form['country']+', '+request.form['edo']+', '+request.form['mun']+', '+request.form['cp']+', '+request.form['fracc']+', '+request.form['calle']+', '+request.form['num']+','+request.form['tel']+')')
+        return redirect(url_for('secret_page'))
     else:
         return str(session['usr_id'])#render_template('payment.html')
 

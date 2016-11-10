@@ -53,8 +53,10 @@ $(document).ready(function() {
 	}
 	$('#btn-pagar').click(function(event) {
 		/* Act on the event */
-		$('#form_pay').submit();
-
+		// localStorage.removeItem("simpleCart_items");
+		localStorage.clear();
+		$('#mod-pay').modal('show');
+		setTimeout(function() { $('#form_pay').submit(); }, 2000);		
 	});
 	$('.qty-min').click(function(event) {
 		quant=$(this).parent().find('.item_Quantity').html()-1;

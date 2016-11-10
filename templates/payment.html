@@ -6,10 +6,10 @@
 		<center>
 			<h1>Datos para envió y pago</h1>
 		</center>
-		<form action="{{ url_for('sale') }}" method=post id="form_pay">
+		<form action="/sale" method="POST" id="form_pay">
 			<div class="row col-md-4 col-md-offset-2"> 	
 				<span>País*</span>
-				<input placeholder="Escribe el pais" type="text" name="country" value="México" disabled="">  	
+				<input placeholder="Escribe el pais" type="text" name="country" value="Mexico">  	
 				<span>Estado*</span>
 				<input type="text" placeholder="Estado (sin abreviaciones)..." name="edo">  	
 				<span>Municipio*</span>
@@ -44,8 +44,8 @@
 				</div>
 				<center>
 					<!-- <input type="submit" value="Pagar"> -->
-					<input type="submit" value="Pagar"> 
-					<!-- <a class="btn btn-primary" id="btn-pagar" data-toggle="modal" href='#modal-id'>Pagar</a> -->
+					<!-- <input type="submit" value="Pagar">  -->
+					<a class="btn btn-primary" id="btn-pagar" data-toggle="modal" href='#modal-id'>Pagar</a>
 					<a class="btn btn-primary " id="cancel_pay" value="Cancelar compra">Cancelar</a>
 				</center>
 				<input type="text" name="json" id="json" hidden="">
@@ -53,11 +53,10 @@
 		</form>
 	</div>
 
-	<div class="modal fade" id="modal-id">
+	<div class="modal fade" id="mod-pay">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">Verificando datos y realizando el cobro</h4>
 				</div>
 				<div class="modal-body">
